@@ -1,0 +1,98 @@
+﻿
+@model IEnumerable<QuanLiKOL.Models.BaiVietKOL>
+@using QuanLiKOL.Models;
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/css/Post.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/1cf4a44777.js" crossorigin="anonymous"></script>
+    <div class="khung">
+        <form action="Post" method="post" id="formbv">
+            <div>
+                <div class="tieude">
+                    <input type="text" name="tieude" placeholder="Tiêu đề" class="ip-tieude" />
+                </div>
+                <div class="anh">
+                    <input type="text" name="anh" placeholder="Ảnh" class="ip-anh" />
+                </div>
+                <div>
+                    <textarea name="noidung" cols="50" rows="6" class="noidung"></textarea>
+                </div>
+
+                <div style="display: flex; margin-top: 10px; ">
+                    <input type="submit" value="đăng bài" class="ip-dangbai" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="display: flex; justify-content: space-around; font-size: 20px; font-family: arial; margin-bottom: 10px; margin-top: 10px;">Bài Viết</div>
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="khungdang">
+                <div id="nguoidang">
+                    @{
+                        KOLDbContext db = new KOLDbContext();
+                        string s = db.KOLs.Where(x => x.id == item.Id).FirstOrDefault().avatar.ToString();
+                        int fl = db.LuotThichBVKOLs.Where(x => x.MaBV == item.MaBV).ToList().Count;
+                    }
+                    <div style="float: left; font-size: 20px; font-weight: bold; font-family: arial;">@item.Id &emsp;</div>
+                    <div style="font-family: Arial; font-size: 20px;">@item.ngaydang</div>
+                    <div style="font-size: 17px; font-family: arial; font-weight: bold; margin-top: 5px; "><span>@item.TieuDe</span></div>
+                    <div style=" display: flex; justify-content: space-around;"><img style=" width: 300px; height: 300px;" src="@s" /></div>
+
+                </div>
+                <div>
+
+                    @*<div style="display: flex; justify-content: space-around"><img src="@item.anh" /></div>*@
+                    <div style="font-size: 20px; font-family: arial; margin-top: 10px; padding: 7px; border: 1px solid; border-color: rgb(150 149 153) ">@item.noidung</div>
+                    <div id="luotlike">
+                        @fl <i class="fa-solid fa-thumbs-up"></i>
+                        @item.BinhLuanBVKOLs.Count <i class="fa-solid fa-comment"></i> 
+                    </div>
+                </div>
+                <div id="binhluan">
+                    @{
+                        List<BinhLuanBVKOL> allbl = new List<BinhLuanBVKOL>();
+                        allbl = db.BinhLuanBVKOLs.Where(x => x.MaBV == item.MaBV).ToList();
+                    }
+                    @foreach (var c in allbl)
+                    {
+                        <div id="tungbinhluan" style="width:100%">
+                            <div style="width:100%; text-align:left; float:left;">@c.khach.nickname</div>
+                            <div style="width:100%; text-align:left; float:left;">@c.ngaybl</div>
+                            <textarea disabled cols="30" rows="3">@c.Noidung</textarea>
+                        </div>
+
+                    }
+                    @if (Session["PQ"].ToString() == "KHACH")
+                    {
+                    <form action="BLBVKOL" method="post">
+                        <textarea name="binhluan"  cols="30" rows="3"></textarea>
+                        <input type="submit" value="Bình luận" />
+                    </form>
+                    }
+                </div>
+            </div>
+        }
+    }
+</body>
+</html>

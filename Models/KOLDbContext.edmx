@@ -1,0 +1,1387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanLyKOLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nickname" Type="nvarchar" MaxLength="50" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaysinh" Type="date" />
+          <Property Name="gioitinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="250" />
+          <Property Name="sdt" Type="nvarchar" MaxLength="15" />
+          <Property Name="gmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Anhduocdang">
+          <Key>
+            <PropertyRef Name="tutang" />
+          </Key>
+          <Property Name="IdKOL" Type="nvarchar" MaxLength="50" />
+          <Property Name="anh" Type="nvarchar" MaxLength="250" />
+          <Property Name="tutang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="baiviet">
+          <Key>
+            <PropertyRef Name="mabv" />
+          </Key>
+          <Property Name="mabv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tenbv" Type="nvarchar" MaxLength="250" />
+          <Property Name="id" Type="nvarchar" MaxLength="50" />
+          <Property Name="anh" Type="nvarchar" MaxLength="250" />
+          <Property Name="noidung" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BaiVietKOL">
+          <Key>
+            <PropertyRef Name="MaBV" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaBV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar(max)" />
+          <Property Name="noidung" Type="nvarchar(max)" />
+          <Property Name="anh" Type="nvarchar" MaxLength="250" />
+          <Property Name="ngaydang" Type="date" />
+        </EntityType>
+        <EntityType Name="BinhLuanBVKOL">
+          <Key>
+            <PropertyRef Name="tutang" />
+          </Key>
+          <Property Name="MaBV" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdKhach" Type="nvarchar" MaxLength="50" />
+          <Property Name="Noidung" Type="nvarchar(max)" />
+          <Property Name="ngaybl" Type="date" />
+          <Property Name="tutang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cautruc">
+          <Key>
+            <PropertyRef Name="mathaydoi" />
+          </Key>
+          <Property Name="mathaydoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma" Type="int" />
+          <Property Name="anhnen" Type="nvarchar" MaxLength="250" />
+          <Property Name="koln1000" Type="money" />
+          <Property Name="kol10005000" Type="money" />
+          <Property Name="kol515" Type="money" />
+          <Property Name="kolt15k" Type="money" />
+          <Property Name="ct1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ct2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ct3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ct4" Type="nvarchar" MaxLength="50" />
+          <Property Name="ct5" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="fl">
+          <Key>
+            <PropertyRef Name="idkol" />
+            <PropertyRef Name="idkhach" />
+          </Key>
+          <Property Name="idkol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idkhach" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TG" Type="date" />
+        </EntityType>
+        <EntityType Name="hopdong">
+          <Key>
+            <PropertyRef Name="mahd" />
+          </Key>
+          <Property Name="mahd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tenhd" Type="nvarchar" MaxLength="250" />
+          <Property Name="linhvuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="trigia" Type="money" />
+          <Property Name="bena" Type="nvarchar" MaxLength="50" />
+          <Property Name="benb" Type="nvarchar" MaxLength="50" />
+          <Property Name="benc" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaybatdau" Type="date" />
+          <Property Name="ngayketthuc" Type="date" />
+          <Property Name="dieukhoan" Type="nvarchar(max)" />
+          <Property Name="trangthai" Type="int" />
+          <Property Name="AnhHD" Type="nvarchar" MaxLength="250" />
+          <Property Name="ngayyeucau" Type="date" />
+        </EntityType>
+        <EntityType Name="khach">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="nickname" Type="nvarchar" MaxLength="50" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaysinh" Type="date" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="250" />
+          <Property Name="sdt" Type="nvarchar" MaxLength="15" />
+          <Property Name="gmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="avatar" Type="nvarchar" MaxLength="250" />
+          <Property Name="malv" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="KOL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nickname" Type="nvarchar" MaxLength="50" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaysinh" Type="date" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="250" />
+          <Property Name="sdt" Type="nvarchar" MaxLength="15" />
+          <Property Name="kolcore" Type="int" />
+          <Property Name="linktiktok" Type="nvarchar" MaxLength="250" />
+          <Property Name="malv" Type="nvarchar" MaxLength="50" />
+          <Property Name="gmail" Type="nchar" MaxLength="200" />
+          <Property Name="gioithieu" Type="nvarchar(max)" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="avatar" Type="nvarchar" MaxLength="250" />
+          <Property Name="fltiktok" Type="int" />
+          <Property Name="trangthai" Type="int" />
+        </EntityType>
+        <EntityType Name="linhvuc">
+          <Key>
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="malv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tenlv" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="linhvucKhach">
+          <Key>
+            <PropertyRef Name="idkhach" />
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="idkhach" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="malv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Solan" Type="int" />
+        </EntityType>
+        <EntityType Name="linhvucKOL">
+          <Key>
+            <PropertyRef Name="IdKOL" />
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="IdKOL" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="malv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fl" Type="int" />
+        </EntityType>
+        <EntityType Name="LuotThichBVKOL">
+          <Key>
+            <PropertyRef Name="idkhach" />
+            <PropertyRef Name="MaBV" />
+          </Key>
+          <Property Name="idkhach" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaBV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ngaythich" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="taikhoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" />
+          <Property Name="pq" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ThoiGianBieuKOL">
+          <Key>
+            <PropertyRef Name="tutang" />
+          </Key>
+          <Property Name="IdKOL" Type="nvarchar" MaxLength="50" />
+          <Property Name="thoigian" Type="date" />
+          <Property Name="hopdong" Type="nvarchar" MaxLength="50" />
+          <Property Name="tutang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToCao">
+          <Key>
+            <PropertyRef Name="matocao" />
+          </Key>
+          <Property Name="matocao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Idtocao" Type="nvarchar" MaxLength="50" />
+          <Property Name="idbitocao" Type="nvarchar" MaxLength="50" />
+          <Property Name="thoigian" Type="date" />
+          <Property Name="Lido" Type="nvarchar(max)" />
+          <Property Name="Trangthai" Type="int" />
+        </EntityType>
+        <Association Name="FK_Anhduocdang_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="Anhduocdang" Type="Self.Anhduocdang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Anhduocdang">
+              <PropertyRef Name="IdKOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_baiviet_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+          <End Role="baiviet" Type="Self.baiviet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="baiviet">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaiVietKOL_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="BaiVietKOL" Type="Self.BaiVietKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BaiVietKOL">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuanBVKOL_BaiVietKOL">
+          <End Role="BaiVietKOL" Type="Self.BaiVietKOL" Multiplicity="0..1" />
+          <End Role="BinhLuanBVKOL" Type="Self.BinhLuanBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaiVietKOL">
+              <PropertyRef Name="MaBV" />
+            </Principal>
+            <Dependent Role="BinhLuanBVKOL">
+              <PropertyRef Name="MaBV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuanBVKOL_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="0..1" />
+          <End Role="BinhLuanBVKOL" Type="Self.BinhLuanBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BinhLuanBVKOL">
+              <PropertyRef Name="IdKhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fl_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="1" />
+          <End Role="fl" Type="Self.fl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fl">
+              <PropertyRef Name="idkhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fl_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="1" />
+          <End Role="fl" Type="Self.fl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fl">
+              <PropertyRef Name="idkol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="benc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="benb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="bena" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="linhvuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKhach_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="1" />
+          <End Role="linhvucKhach" Type="Self.linhvucKhach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="linhvucKhach">
+              <PropertyRef Name="idkhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKhach_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="1" />
+          <End Role="linhvucKhach" Type="Self.linhvucKhach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="linhvucKhach">
+              <PropertyRef Name="malv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKOL_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="1" />
+          <End Role="linhvucKOL" Type="Self.linhvucKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="linhvucKOL">
+              <PropertyRef Name="IdKOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKOL_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="1" />
+          <End Role="linhvucKOL" Type="Self.linhvucKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="linhvucKOL">
+              <PropertyRef Name="malv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LuotThichBVKOL_BaiVietKOL">
+          <End Role="BaiVietKOL" Type="Self.BaiVietKOL" Multiplicity="1" />
+          <End Role="LuotThichBVKOL" Type="Self.LuotThichBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaiVietKOL">
+              <PropertyRef Name="MaBV" />
+            </Principal>
+            <Dependent Role="LuotThichBVKOL">
+              <PropertyRef Name="MaBV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LuotThichBVKOL_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="1" />
+          <End Role="LuotThichBVKOL" Type="Self.LuotThichBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LuotThichBVKOL">
+              <PropertyRef Name="idkhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThoiGianBieuKOL_hopdong">
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="0..1" />
+          <End Role="ThoiGianBieuKOL" Type="Self.ThoiGianBieuKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hopdong">
+              <PropertyRef Name="mahd" />
+            </Principal>
+            <Dependent Role="ThoiGianBieuKOL">
+              <PropertyRef Name="hopdong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThoiGianBieuKOL_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="ThoiGianBieuKOL" Type="Self.ThoiGianBieuKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ThoiGianBieuKOL">
+              <PropertyRef Name="IdKOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToCao_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="ToCao" Type="Self.ToCao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ToCao">
+              <PropertyRef Name="idbitocao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyKOLModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Anhduocdang" EntityType="Self.Anhduocdang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="baiviet" EntityType="Self.baiviet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaiVietKOL" EntityType="Self.BaiVietKOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BinhLuanBVKOL" EntityType="Self.BinhLuanBVKOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cautruc" EntityType="Self.cautruc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fl" EntityType="Self.fl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hopdong" EntityType="Self.hopdong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khach" EntityType="Self.khach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KOL" EntityType="Self.KOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="linhvuc" EntityType="Self.linhvuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="linhvucKhach" EntityType="Self.linhvucKhach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="linhvucKOL" EntityType="Self.linhvucKOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LuotThichBVKOL" EntityType="Self.LuotThichBVKOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taikhoan" EntityType="Self.taikhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThoiGianBieuKOL" EntityType="Self.ThoiGianBieuKOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToCao" EntityType="Self.ToCao" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Anhduocdang_KOL" Association="Self.FK_Anhduocdang_KOL">
+            <End Role="KOL" EntitySet="KOL" />
+            <End Role="Anhduocdang" EntitySet="Anhduocdang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_baiviet_admin" Association="Self.FK_baiviet_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="baiviet" EntitySet="baiviet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaiVietKOL_KOL" Association="Self.FK_BaiVietKOL_KOL">
+            <End Role="KOL" EntitySet="KOL" />
+            <End Role="BaiVietKOL" EntitySet="BaiVietKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuanBVKOL_BaiVietKOL" Association="Self.FK_BinhLuanBVKOL_BaiVietKOL">
+            <End Role="BaiVietKOL" EntitySet="BaiVietKOL" />
+            <End Role="BinhLuanBVKOL" EntitySet="BinhLuanBVKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuanBVKOL_khach" Association="Self.FK_BinhLuanBVKOL_khach">
+            <End Role="khach" EntitySet="khach" />
+            <End Role="BinhLuanBVKOL" EntitySet="BinhLuanBVKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_khach" Association="Self.FK_fl_khach">
+            <End Role="khach" EntitySet="khach" />
+            <End Role="fl" EntitySet="fl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_KOL" Association="Self.FK_fl_KOL">
+            <End Role="KOL" EntitySet="KOL" />
+            <End Role="fl" EntitySet="fl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_admin" Association="Self.FK_hopdong_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="hopdong" EntitySet="hopdong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_khach" Association="Self.FK_hopdong_khach">
+            <End Role="khach" EntitySet="khach" />
+            <End Role="hopdong" EntitySet="hopdong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_KOL" Association="Self.FK_hopdong_KOL">
+            <End Role="KOL" EntitySet="KOL" />
+            <End Role="hopdong" EntitySet="hopdong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_linhvuc" Association="Self.FK_hopdong_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvuc" />
+            <End Role="hopdong" EntitySet="hopdong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKhach_khach" Association="Self.FK_linhvucKhach_khach">
+            <End Role="khach" EntitySet="khach" />
+            <End Role="linhvucKhach" EntitySet="linhvucKhach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKhach_linhvuc" Association="Self.FK_linhvucKhach_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvuc" />
+            <End Role="linhvucKhach" EntitySet="linhvucKhach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKOL_KOL" Association="Self.FK_linhvucKOL_KOL">
+            <End Role="KOL" EntitySet="KOL" />
+            <End Role="linhvucKOL" EntitySet="linhvucKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKOL_linhvuc" Association="Self.FK_linhvucKOL_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvuc" />
+            <End Role="linhvucKOL" EntitySet="linhvucKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LuotThichBVKOL_BaiVietKOL" Association="Self.FK_LuotThichBVKOL_BaiVietKOL">
+            <End Role="BaiVietKOL" EntitySet="BaiVietKOL" />
+            <End Role="LuotThichBVKOL" EntitySet="LuotThichBVKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LuotThichBVKOL_khach" Association="Self.FK_LuotThichBVKOL_khach">
+            <End Role="khach" EntitySet="khach" />
+            <End Role="LuotThichBVKOL" EntitySet="LuotThichBVKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiGianBieuKOL_hopdong" Association="Self.FK_ThoiGianBieuKOL_hopdong">
+            <End Role="hopdong" EntitySet="hopdong" />
+            <End Role="ThoiGianBieuKOL" EntitySet="ThoiGianBieuKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiGianBieuKOL_KOL" Association="Self.FK_ThoiGianBieuKOL_KOL">
+            <End Role="KOL" EntitySet="KOL" />
+            <End Role="ThoiGianBieuKOL" EntitySet="ThoiGianBieuKOL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToCao_KOL" Association="Self.FK_ToCao_KOL">
+            <End Role="KOL" EntitySet="KOL" />
+            <End Role="ToCao" EntitySet="ToCao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyKOLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+          <Property Name="gioitinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="gmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="baiviets" Relationship="Self.FK_baiviet_admin" FromRole="admin" ToRole="baiviet" />
+          <NavigationProperty Name="hopdongs" Relationship="Self.FK_hopdong_admin" FromRole="admin" ToRole="hopdong" />
+        </EntityType>
+        <EntityType Name="Anhduocdang">
+          <Key>
+            <PropertyRef Name="tutang" />
+          </Key>
+          <Property Name="IdKOL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="anh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="tutang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="KOL" Relationship="Self.FK_Anhduocdang_KOL" FromRole="Anhduocdang" ToRole="KOL" />
+        </EntityType>
+        <EntityType Name="baiviet">
+          <Key>
+            <PropertyRef Name="mabv" />
+          </Key>
+          <Property Name="mabv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenbv" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="anh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_baiviet_admin" FromRole="baiviet" ToRole="admin" />
+        </EntityType>
+        <EntityType Name="BaiVietKOL">
+          <Key>
+            <PropertyRef Name="MaBV" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="anh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ngaydang" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="KOL" Relationship="Self.FK_BaiVietKOL_KOL" FromRole="BaiVietKOL" ToRole="KOL" />
+          <NavigationProperty Name="BinhLuanBVKOLs" Relationship="Self.FK_BinhLuanBVKOL_BaiVietKOL" FromRole="BaiVietKOL" ToRole="BinhLuanBVKOL" />
+          <NavigationProperty Name="LuotThichBVKOLs" Relationship="Self.FK_LuotThichBVKOL_BaiVietKOL" FromRole="BaiVietKOL" ToRole="LuotThichBVKOL" />
+        </EntityType>
+        <EntityType Name="BinhLuanBVKOL">
+          <Key>
+            <PropertyRef Name="tutang" />
+          </Key>
+          <Property Name="MaBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdKhach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngaybl" Type="DateTime" Precision="0" />
+          <Property Name="tutang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BaiVietKOL" Relationship="Self.FK_BinhLuanBVKOL_BaiVietKOL" FromRole="BinhLuanBVKOL" ToRole="BaiVietKOL" />
+          <NavigationProperty Name="khach" Relationship="Self.FK_BinhLuanBVKOL_khach" FromRole="BinhLuanBVKOL" ToRole="khach" />
+        </EntityType>
+        <EntityType Name="cautruc">
+          <Key>
+            <PropertyRef Name="mathaydoi" />
+          </Key>
+          <Property Name="mathaydoi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma" Type="Int32" />
+          <Property Name="anhnen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="koln1000" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="kol10005000" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="kol515" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="kolt15k" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ct1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ct2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ct3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ct4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ct5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="fl">
+          <Key>
+            <PropertyRef Name="idkol" />
+            <PropertyRef Name="idkhach" />
+          </Key>
+          <Property Name="idkol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idkhach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TG" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="khach" Relationship="Self.FK_fl_khach" FromRole="fl" ToRole="khach" />
+          <NavigationProperty Name="KOL" Relationship="Self.FK_fl_KOL" FromRole="fl" ToRole="KOL" />
+        </EntityType>
+        <EntityType Name="hopdong">
+          <Key>
+            <PropertyRef Name="mahd" />
+          </Key>
+          <Property Name="mahd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenhd" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="linhvuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trigia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="bena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="benb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="benc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaybatdau" Type="DateTime" Precision="0" />
+          <Property Name="ngayketthuc" Type="DateTime" Precision="0" />
+          <Property Name="dieukhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="trangthai" Type="Int32" />
+          <Property Name="AnhHD" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ngayyeucau" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_hopdong_admin" FromRole="hopdong" ToRole="admin" />
+          <NavigationProperty Name="khach" Relationship="Self.FK_hopdong_khach" FromRole="hopdong" ToRole="khach" />
+          <NavigationProperty Name="KOL" Relationship="Self.FK_hopdong_KOL" FromRole="hopdong" ToRole="KOL" />
+          <NavigationProperty Name="linhvuc1" Relationship="Self.FK_hopdong_linhvuc" FromRole="hopdong" ToRole="linhvuc" />
+          <NavigationProperty Name="ThoiGianBieuKOLs" Relationship="Self.FK_ThoiGianBieuKOL_hopdong" FromRole="hopdong" ToRole="ThoiGianBieuKOL" />
+        </EntityType>
+        <EntityType Name="khach">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+          <Property Name="diachi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="gmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="malv" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BinhLuanBVKOLs" Relationship="Self.FK_BinhLuanBVKOL_khach" FromRole="khach" ToRole="BinhLuanBVKOL" />
+          <NavigationProperty Name="fls" Relationship="Self.FK_fl_khach" FromRole="khach" ToRole="fl" />
+          <NavigationProperty Name="hopdongs" Relationship="Self.FK_hopdong_khach" FromRole="khach" ToRole="hopdong" />
+          <NavigationProperty Name="linhvucKhaches" Relationship="Self.FK_linhvucKhach_khach" FromRole="khach" ToRole="linhvucKhach" />
+          <NavigationProperty Name="LuotThichBVKOLs" Relationship="Self.FK_LuotThichBVKOL_khach" FromRole="khach" ToRole="LuotThichBVKOL" />
+        </EntityType>
+        <EntityType Name="KOL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+          <Property Name="diachi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="kolcore" Type="Int32" />
+          <Property Name="linktiktok" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="malv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gmail" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="fltiktok" Type="Int32" />
+          <NavigationProperty Name="Anhduocdangs" Relationship="Self.FK_Anhduocdang_KOL" FromRole="KOL" ToRole="Anhduocdang" />
+          <NavigationProperty Name="BaiVietKOLs" Relationship="Self.FK_BaiVietKOL_KOL" FromRole="KOL" ToRole="BaiVietKOL" />
+          <NavigationProperty Name="fls" Relationship="Self.FK_fl_KOL" FromRole="KOL" ToRole="fl" />
+          <NavigationProperty Name="hopdongs" Relationship="Self.FK_hopdong_KOL" FromRole="KOL" ToRole="hopdong" />
+          <NavigationProperty Name="linhvucKOLs" Relationship="Self.FK_linhvucKOL_KOL" FromRole="KOL" ToRole="linhvucKOL" />
+          <NavigationProperty Name="ThoiGianBieuKOLs" Relationship="Self.FK_ThoiGianBieuKOL_KOL" FromRole="KOL" ToRole="ThoiGianBieuKOL" />
+          <NavigationProperty Name="ToCaos" Relationship="Self.FK_ToCao_KOL" FromRole="KOL" ToRole="ToCao" />
+          <Property Name="trangthai" Type="Int32" />
+        </EntityType>
+        <EntityType Name="linhvuc">
+          <Key>
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="malv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenlv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="hopdongs" Relationship="Self.FK_hopdong_linhvuc" FromRole="linhvuc" ToRole="hopdong" />
+          <NavigationProperty Name="linhvucKhaches" Relationship="Self.FK_linhvucKhach_linhvuc" FromRole="linhvuc" ToRole="linhvucKhach" />
+          <NavigationProperty Name="linhvucKOLs" Relationship="Self.FK_linhvucKOL_linhvuc" FromRole="linhvuc" ToRole="linhvucKOL" />
+        </EntityType>
+        <EntityType Name="linhvucKhach">
+          <Key>
+            <PropertyRef Name="idkhach" />
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="idkhach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="malv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Solan" Type="Int32" />
+          <NavigationProperty Name="khach" Relationship="Self.FK_linhvucKhach_khach" FromRole="linhvucKhach" ToRole="khach" />
+          <NavigationProperty Name="linhvuc" Relationship="Self.FK_linhvucKhach_linhvuc" FromRole="linhvucKhach" ToRole="linhvuc" />
+        </EntityType>
+        <EntityType Name="linhvucKOL">
+          <Key>
+            <PropertyRef Name="IdKOL" />
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="IdKOL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="malv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fl" Type="Int32" />
+          <NavigationProperty Name="KOL" Relationship="Self.FK_linhvucKOL_KOL" FromRole="linhvucKOL" ToRole="KOL" />
+          <NavigationProperty Name="linhvuc" Relationship="Self.FK_linhvucKOL_linhvuc" FromRole="linhvucKOL" ToRole="linhvuc" />
+        </EntityType>
+        <EntityType Name="LuotThichBVKOL">
+          <Key>
+            <PropertyRef Name="idkhach" />
+            <PropertyRef Name="MaBV" />
+          </Key>
+          <Property Name="idkhach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ngaythich" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BaiVietKOL" Relationship="Self.FK_LuotThichBVKOL_BaiVietKOL" FromRole="LuotThichBVKOL" ToRole="BaiVietKOL" />
+          <NavigationProperty Name="khach" Relationship="Self.FK_LuotThichBVKOL_khach" FromRole="LuotThichBVKOL" ToRole="khach" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="taikhoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pq" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ThoiGianBieuKOL">
+          <Key>
+            <PropertyRef Name="tutang" />
+          </Key>
+          <Property Name="IdKOL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="thoigian" Type="DateTime" Precision="0" />
+          <Property Name="hopdong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tutang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="hopdong1" Relationship="Self.FK_ThoiGianBieuKOL_hopdong" FromRole="ThoiGianBieuKOL" ToRole="hopdong" />
+          <NavigationProperty Name="KOL" Relationship="Self.FK_ThoiGianBieuKOL_KOL" FromRole="ThoiGianBieuKOL" ToRole="KOL" />
+        </EntityType>
+        <EntityType Name="ToCao">
+          <Key>
+            <PropertyRef Name="matocao" />
+          </Key>
+          <Property Name="matocao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Idtocao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idbitocao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="thoigian" Type="DateTime" Precision="0" />
+          <Property Name="Lido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KOL" Relationship="Self.FK_ToCao_KOL" FromRole="ToCao" ToRole="KOL" />
+          <Property Name="Trangthai" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_baiviet_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+          <End Role="baiviet" Type="Self.baiviet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="baiviet">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="benc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anhduocdang_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="Anhduocdang" Type="Self.Anhduocdang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Anhduocdang">
+              <PropertyRef Name="IdKOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaiVietKOL_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="BaiVietKOL" Type="Self.BaiVietKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BaiVietKOL">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuanBVKOL_BaiVietKOL">
+          <End Role="BaiVietKOL" Type="Self.BaiVietKOL" Multiplicity="0..1" />
+          <End Role="BinhLuanBVKOL" Type="Self.BinhLuanBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaiVietKOL">
+              <PropertyRef Name="MaBV" />
+            </Principal>
+            <Dependent Role="BinhLuanBVKOL">
+              <PropertyRef Name="MaBV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LuotThichBVKOL_BaiVietKOL">
+          <End Role="BaiVietKOL" Type="Self.BaiVietKOL" Multiplicity="1" />
+          <End Role="LuotThichBVKOL" Type="Self.LuotThichBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaiVietKOL">
+              <PropertyRef Name="MaBV" />
+            </Principal>
+            <Dependent Role="LuotThichBVKOL">
+              <PropertyRef Name="MaBV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuanBVKOL_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="0..1" />
+          <End Role="BinhLuanBVKOL" Type="Self.BinhLuanBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BinhLuanBVKOL">
+              <PropertyRef Name="IdKhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fl_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="1" />
+          <End Role="fl" Type="Self.fl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fl">
+              <PropertyRef Name="idkhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fl_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="1" />
+          <End Role="fl" Type="Self.fl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fl">
+              <PropertyRef Name="idkol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="benb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="bena" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hopdong_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="0..1" />
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="hopdong">
+              <PropertyRef Name="linhvuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThoiGianBieuKOL_hopdong">
+          <End Role="hopdong" Type="Self.hopdong" Multiplicity="0..1" />
+          <End Role="ThoiGianBieuKOL" Type="Self.ThoiGianBieuKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hopdong">
+              <PropertyRef Name="mahd" />
+            </Principal>
+            <Dependent Role="ThoiGianBieuKOL">
+              <PropertyRef Name="hopdong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKhach_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="1" />
+          <End Role="linhvucKhach" Type="Self.linhvucKhach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="linhvucKhach">
+              <PropertyRef Name="idkhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LuotThichBVKOL_khach">
+          <End Role="khach" Type="Self.khach" Multiplicity="1" />
+          <End Role="LuotThichBVKOL" Type="Self.LuotThichBVKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LuotThichBVKOL">
+              <PropertyRef Name="idkhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKOL_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="1" />
+          <End Role="linhvucKOL" Type="Self.linhvucKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="linhvucKOL">
+              <PropertyRef Name="IdKOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThoiGianBieuKOL_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="ThoiGianBieuKOL" Type="Self.ThoiGianBieuKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ThoiGianBieuKOL">
+              <PropertyRef Name="IdKOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToCao_KOL">
+          <End Role="KOL" Type="Self.KOL" Multiplicity="0..1" />
+          <End Role="ToCao" Type="Self.ToCao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KOL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ToCao">
+              <PropertyRef Name="idbitocao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKhach_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="1" />
+          <End Role="linhvucKhach" Type="Self.linhvucKhach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="linhvucKhach">
+              <PropertyRef Name="malv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_linhvucKOL_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="1" />
+          <End Role="linhvucKOL" Type="Self.linhvucKOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="linhvucKOL">
+              <PropertyRef Name="malv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KOLDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="Anhduocdangs" EntityType="Self.Anhduocdang" />
+          <EntitySet Name="baiviets" EntityType="Self.baiviet" />
+          <EntitySet Name="BaiVietKOLs" EntityType="Self.BaiVietKOL" />
+          <EntitySet Name="BinhLuanBVKOLs" EntityType="Self.BinhLuanBVKOL" />
+          <EntitySet Name="cautrucs" EntityType="Self.cautruc" />
+          <EntitySet Name="fls" EntityType="Self.fl" />
+          <EntitySet Name="hopdongs" EntityType="Self.hopdong" />
+          <EntitySet Name="khaches" EntityType="Self.khach" />
+          <EntitySet Name="KOLs" EntityType="Self.KOL" />
+          <EntitySet Name="linhvucs" EntityType="Self.linhvuc" />
+          <EntitySet Name="linhvucKhaches" EntityType="Self.linhvucKhach" />
+          <EntitySet Name="linhvucKOLs" EntityType="Self.linhvucKOL" />
+          <EntitySet Name="LuotThichBVKOLs" EntityType="Self.LuotThichBVKOL" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="taikhoans" EntityType="Self.taikhoan" />
+          <EntitySet Name="ThoiGianBieuKOLs" EntityType="Self.ThoiGianBieuKOL" />
+          <EntitySet Name="ToCaos" EntityType="Self.ToCao" />
+          <AssociationSet Name="FK_baiviet_admin" Association="Self.FK_baiviet_admin">
+            <End Role="admin" EntitySet="admins" />
+            <End Role="baiviet" EntitySet="baiviets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_admin" Association="Self.FK_hopdong_admin">
+            <End Role="admin" EntitySet="admins" />
+            <End Role="hopdong" EntitySet="hopdongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anhduocdang_KOL" Association="Self.FK_Anhduocdang_KOL">
+            <End Role="KOL" EntitySet="KOLs" />
+            <End Role="Anhduocdang" EntitySet="Anhduocdangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaiVietKOL_KOL" Association="Self.FK_BaiVietKOL_KOL">
+            <End Role="KOL" EntitySet="KOLs" />
+            <End Role="BaiVietKOL" EntitySet="BaiVietKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuanBVKOL_BaiVietKOL" Association="Self.FK_BinhLuanBVKOL_BaiVietKOL">
+            <End Role="BaiVietKOL" EntitySet="BaiVietKOLs" />
+            <End Role="BinhLuanBVKOL" EntitySet="BinhLuanBVKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LuotThichBVKOL_BaiVietKOL" Association="Self.FK_LuotThichBVKOL_BaiVietKOL">
+            <End Role="BaiVietKOL" EntitySet="BaiVietKOLs" />
+            <End Role="LuotThichBVKOL" EntitySet="LuotThichBVKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuanBVKOL_khach" Association="Self.FK_BinhLuanBVKOL_khach">
+            <End Role="khach" EntitySet="khaches" />
+            <End Role="BinhLuanBVKOL" EntitySet="BinhLuanBVKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_khach" Association="Self.FK_fl_khach">
+            <End Role="khach" EntitySet="khaches" />
+            <End Role="fl" EntitySet="fls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_KOL" Association="Self.FK_fl_KOL">
+            <End Role="KOL" EntitySet="KOLs" />
+            <End Role="fl" EntitySet="fls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_khach" Association="Self.FK_hopdong_khach">
+            <End Role="khach" EntitySet="khaches" />
+            <End Role="hopdong" EntitySet="hopdongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_KOL" Association="Self.FK_hopdong_KOL">
+            <End Role="KOL" EntitySet="KOLs" />
+            <End Role="hopdong" EntitySet="hopdongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hopdong_linhvuc" Association="Self.FK_hopdong_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvucs" />
+            <End Role="hopdong" EntitySet="hopdongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiGianBieuKOL_hopdong" Association="Self.FK_ThoiGianBieuKOL_hopdong">
+            <End Role="hopdong" EntitySet="hopdongs" />
+            <End Role="ThoiGianBieuKOL" EntitySet="ThoiGianBieuKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKhach_khach" Association="Self.FK_linhvucKhach_khach">
+            <End Role="khach" EntitySet="khaches" />
+            <End Role="linhvucKhach" EntitySet="linhvucKhaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LuotThichBVKOL_khach" Association="Self.FK_LuotThichBVKOL_khach">
+            <End Role="khach" EntitySet="khaches" />
+            <End Role="LuotThichBVKOL" EntitySet="LuotThichBVKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKOL_KOL" Association="Self.FK_linhvucKOL_KOL">
+            <End Role="KOL" EntitySet="KOLs" />
+            <End Role="linhvucKOL" EntitySet="linhvucKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiGianBieuKOL_KOL" Association="Self.FK_ThoiGianBieuKOL_KOL">
+            <End Role="KOL" EntitySet="KOLs" />
+            <End Role="ThoiGianBieuKOL" EntitySet="ThoiGianBieuKOLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToCao_KOL" Association="Self.FK_ToCao_KOL">
+            <End Role="KOL" EntitySet="KOLs" />
+            <End Role="ToCao" EntitySet="ToCaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKhach_linhvuc" Association="Self.FK_linhvucKhach_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvucs" />
+            <End Role="linhvucKhach" EntitySet="linhvucKhaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_linhvucKOL_linhvuc" Association="Self.FK_linhvucKOL_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvucs" />
+            <End Role="linhvucKOL" EntitySet="linhvucKOLs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyKOLModelStoreContainer" CdmEntityContainer="KOLDbContext">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+                <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="gmail" ColumnName="gmail" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Anhduocdangs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.Anhduocdang">
+              <MappingFragment StoreEntitySet="Anhduocdang">
+                <ScalarProperty Name="IdKOL" ColumnName="IdKOL" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="tutang" ColumnName="tutang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="baiviets">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.baiviet">
+              <MappingFragment StoreEntitySet="baiviet">
+                <ScalarProperty Name="mabv" ColumnName="mabv" />
+                <ScalarProperty Name="tenbv" ColumnName="tenbv" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaiVietKOLs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.BaiVietKOL">
+              <MappingFragment StoreEntitySet="BaiVietKOL">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MaBV" ColumnName="MaBV" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BinhLuanBVKOLs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.BinhLuanBVKOL">
+              <MappingFragment StoreEntitySet="BinhLuanBVKOL">
+                <ScalarProperty Name="MaBV" ColumnName="MaBV" />
+                <ScalarProperty Name="IdKhach" ColumnName="IdKhach" />
+                <ScalarProperty Name="Noidung" ColumnName="Noidung" />
+                <ScalarProperty Name="ngaybl" ColumnName="ngaybl" />
+                <ScalarProperty Name="tutang" ColumnName="tutang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cautrucs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.cautruc">
+              <MappingFragment StoreEntitySet="cautruc">
+                <ScalarProperty Name="mathaydoi" ColumnName="mathaydoi" />
+                <ScalarProperty Name="ma" ColumnName="ma" />
+                <ScalarProperty Name="anhnen" ColumnName="anhnen" />
+                <ScalarProperty Name="koln1000" ColumnName="koln1000" />
+                <ScalarProperty Name="kol10005000" ColumnName="kol10005000" />
+                <ScalarProperty Name="kol515" ColumnName="kol515" />
+                <ScalarProperty Name="kolt15k" ColumnName="kolt15k" />
+                <ScalarProperty Name="ct1" ColumnName="ct1" />
+                <ScalarProperty Name="ct2" ColumnName="ct2" />
+                <ScalarProperty Name="ct3" ColumnName="ct3" />
+                <ScalarProperty Name="ct4" ColumnName="ct4" />
+                <ScalarProperty Name="ct5" ColumnName="ct5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fls">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.fl">
+              <MappingFragment StoreEntitySet="fl">
+                <ScalarProperty Name="idkol" ColumnName="idkol" />
+                <ScalarProperty Name="idkhach" ColumnName="idkhach" />
+                <ScalarProperty Name="TG" ColumnName="TG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hopdongs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.hopdong">
+              <MappingFragment StoreEntitySet="hopdong">
+                <ScalarProperty Name="mahd" ColumnName="mahd" />
+                <ScalarProperty Name="tenhd" ColumnName="tenhd" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+                <ScalarProperty Name="trigia" ColumnName="trigia" />
+                <ScalarProperty Name="bena" ColumnName="bena" />
+                <ScalarProperty Name="benb" ColumnName="benb" />
+                <ScalarProperty Name="benc" ColumnName="benc" />
+                <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
+                <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+                <ScalarProperty Name="dieukhoan" ColumnName="dieukhoan" />
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="AnhHD" ColumnName="AnhHD" />
+                <ScalarProperty Name="ngayyeucau" ColumnName="ngayyeucau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khaches">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.khach">
+              <MappingFragment StoreEntitySet="khach">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="gmail" ColumnName="gmail" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="malv" ColumnName="malv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KOLs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.KOL">
+              <MappingFragment StoreEntitySet="KOL">
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="kolcore" ColumnName="kolcore" />
+                <ScalarProperty Name="linktiktok" ColumnName="linktiktok" />
+                <ScalarProperty Name="malv" ColumnName="malv" />
+                <ScalarProperty Name="gmail" ColumnName="gmail" />
+                <ScalarProperty Name="gioithieu" ColumnName="gioithieu" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="fltiktok" ColumnName="fltiktok" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="linhvucs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.linhvuc">
+              <MappingFragment StoreEntitySet="linhvuc">
+                <ScalarProperty Name="malv" ColumnName="malv" />
+                <ScalarProperty Name="tenlv" ColumnName="tenlv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="linhvucKhaches">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.linhvucKhach">
+              <MappingFragment StoreEntitySet="linhvucKhach">
+                <ScalarProperty Name="idkhach" ColumnName="idkhach" />
+                <ScalarProperty Name="malv" ColumnName="malv" />
+                <ScalarProperty Name="Solan" ColumnName="Solan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="linhvucKOLs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.linhvucKOL">
+              <MappingFragment StoreEntitySet="linhvucKOL">
+                <ScalarProperty Name="IdKOL" ColumnName="IdKOL" />
+                <ScalarProperty Name="malv" ColumnName="malv" />
+                <ScalarProperty Name="fl" ColumnName="fl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LuotThichBVKOLs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.LuotThichBVKOL">
+              <MappingFragment StoreEntitySet="LuotThichBVKOL">
+                <ScalarProperty Name="idkhach" ColumnName="idkhach" />
+                <ScalarProperty Name="MaBV" ColumnName="MaBV" />
+                <ScalarProperty Name="ngaythich" ColumnName="ngaythich" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taikhoans">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.taikhoan">
+              <MappingFragment StoreEntitySet="taikhoan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="pq" ColumnName="pq" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThoiGianBieuKOLs">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.ThoiGianBieuKOL">
+              <MappingFragment StoreEntitySet="ThoiGianBieuKOL">
+                <ScalarProperty Name="IdKOL" ColumnName="IdKOL" />
+                <ScalarProperty Name="thoigian" ColumnName="thoigian" />
+                <ScalarProperty Name="hopdong" ColumnName="hopdong" />
+                <ScalarProperty Name="tutang" ColumnName="tutang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToCaos">
+            <EntityTypeMapping TypeName="QuanLyKOLModel.ToCao">
+              <MappingFragment StoreEntitySet="ToCao">
+                <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+                <ScalarProperty Name="matocao" ColumnName="matocao" />
+                <ScalarProperty Name="Idtocao" ColumnName="Idtocao" />
+                <ScalarProperty Name="idbitocao" ColumnName="idbitocao" />
+                <ScalarProperty Name="thoigian" ColumnName="thoigian" />
+                <ScalarProperty Name="Lido" ColumnName="Lido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

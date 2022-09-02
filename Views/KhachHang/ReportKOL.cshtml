@@ -1,0 +1,30 @@
+﻿@model QuanLiKOL.Models.KOL
+
+@{
+
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+<h1>Tố cáo tài khoản KOL: @Model.nickname</h1>
+<form action="ReportKOL" method="post">
+    <input type="text" name="id" hidden value="@Model.id" />
+    <input type="text" disabled name="nickname" value="@Model.nickname" />
+    <select name="lido">
+        <option>Sử dụng hình ảnh không phải của bản thân</option>
+        <option>Sử dụng link tiktok không phải của bản thân</option>
+        <option>Có bài viết không phù hợp</option>
+        <option>Hình ảnh khiêu dâm</option>
+    </select>
+    <input type="submit" value="Report" onclick="alert('Phiếu khiếu nại của bạn đã được gửi đi để xử lí, cảm ơn bạn đã góp phần xây dựng cộng đồng lành mạnh,...')"/>
+</form>

@@ -1,0 +1,88 @@
+﻿@using QuanLiKOL.Models
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+
+    KOLDbContext db = new KOLDbContext();
+    var cautuc = db.cautrucs.Where(x => x.ma == 1).FirstOrDefault();
+}
+<br />
+<div style="width:100%">
+    <button disabled><a href="">Load lại follow tiktok</a></button>
+    <button><a href="~/Admin/loaddiemkol" onclick="alert(Đã load!)">Load lại điểm KOL</a></button>
+</div>
+<div style="width:100% ; text-align: center">
+    Thưởng điểm KOL
+    <form style="width:100%; float:left" action="thuongdiem" method="post">
+        <input style="width:20%; float:left" type="text" name="idnhan"  placeholder="id KOL"/>
+        <input style="width:70%; float:left" type="text" name="lido" placeholder="Lí do nhận thưởng"/>
+        <input style="width:5%; float:left" type="number" name="diem" placeholder="Điểm">
+        <input style="width:5%; float:left" type="submit" value="Thưởng" />
+    </form>
+    <button><a href="">Thưởng điểm KOL</a></button>
+</div>
+<h1>Thay đổi cấu trúc</h1>
+<form action="~/admin/thaydoicautruc" method="post" style="width: 100%; border-radius: 5%; box-shadow: 0px 0px 17px 2px rgb(66 64 64);">
+    <div style="width:100%; float:left">
+        <div style="width:100%; float:left">Mã cấu trúc:</div>
+        <input style="width:100%; float:left" name="id" disabled type="text" value="@cautuc.mathaydoi" />
+    </div>
+    
+    <div style="width:100%; float:left">
+        <div style="width:100%; float:left">Câu giới thiệu:</div>
+        <input style="width:100%; float:left" name="quangcao" type="text" value="@cautuc.ct1" />
+    </div>
+
+    <div style="width:100%; float:left">
+
+        <div style="width:100%; float:left"> Ảnh nền:</div>
+        <input style="width:100%; float:left" disabled name="anhnen" type="text" value="@cautuc.anhnen" />
+    </div>
+
+    <div style="width:100%; float:left">
+
+        <div style="width:100%; float:left">Giá KOL <= 1000 điểm kol</div>
+        <input style="width:100%; float:left" name="koln1" type="number" value="@cautuc.koln1000" />
+    </div>
+
+    <div style="width:100%; float:left">
+
+        <div style="width:100%; float:left">Giá KOL có điểm kol từ 1001-5000</div>
+        <input style="width:100%; float:left" name="kol15" type="number" value="@cautuc.kol10005000" />
+    </div>
+
+    <div style="width:100%; float:left">
+        <div style="width:100%; float:left">Giá KOL có điểm kol từ 5001-15000</div>
+        <input style="width:100%; float:left" name="kol515" type="number" value="@cautuc.kol515" />
+    </div>
+
+
+    <div style="width:100%; float:left">
+
+        <div style="width:100%; float:left">Giá KOL có điểm kol > 15000</div>
+        <input style="width:100%; float:left" name="kolt15" type="number" value="@cautuc.kolt15k" />
+    </div>
+
+    <input type="submit" value="Xác nhận" />
+</form>
+<h1>Đăng bài</h1>
+<form action="~/admin/admindangbai" method="post" style="width: 100%; border-radius: 5%; box-shadow: 0px 0px 17px 2px rgb(66 64 64);">
+    <div style="width:100%; float:left">
+        <div style="width:100%; float:left">Tên bài viết:</div>
+        <input id="tenbaiviet" style="width:100%; float:left" name="tenbaiviet" type="text"/>
+    </div>
+
+    <div style="width:100%; float:left">
+        <div style="width:100%; float:left">Ảnh :</div>
+        <input id="anh" style="width:100%; float:left" name="anh" type="text"  />
+    </div>
+
+    <div style="width:100%; float:left">
+        <div id="noidung" style="width:100%; float:left">Nội dung:</div>
+        <input style="width:100%; float:left" name="noidung" type="text"/>
+    </div>
+
+    <input type="submit" value="Đăng" />
+</form>
+
+

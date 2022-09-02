@@ -1,0 +1,108 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+@using QuanLiKOL.Models
+@{
+    if (Session["id"] != null)
+    {
+        if (Session["PQ"].ToString() == "KOL")
+        {
+            Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+        }
+
+        if (Session["PQ"].ToString() == "KHACH")
+        {
+            Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+        }
+        if (Session["PQ"].ToString() == "ADMIN")
+        {
+            Layout = "~/Views/Shared/_ADMIN.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+}
+<div style="width:100%; float:left; color:black; font-size:20px; text-align:center">
+    <a href="~/BangXH/All?lv=All">Điểm KOL</a>
+    /
+    <a href="~/BangXH/All?lv=HDg">Số lượng hợp đồng kí được </a>
+    /
+    <a href="~/BangXH/All?lv=tiktok">Follow trên MXH liên kết ( tiktok) </a>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+@if (Session["PQ"].ToString() != "ADMIN")
+{
+    <div style="width: 100%; display: flex; justify-content: space-evenly;">
+        <div style="float: left; display: flex; flex-direction: column; margin-top: 100px; ">
+            <div style="width:100%"><img style="width:160px; height:160px;float:left; border-radius:50%" src="@Session["nhi"]" title="source: imgur.com" /></div>
+            <div style="font-size: 22px; display: flex; justify-content: space-around; margin-top: 5px; margin-bottom: 5px">@Session["ten2"]</div>
+            <div style="display: flex; justify-content: space-around; font-size: 27px; font-family: arial; font-weight: bold; color: red;">HẠNG 2</div>
+        </div>
+        <div style="float: left; display: flex; flex-direction: column; margin-top: -40px; ">
+            <div style="display: flex; justify-content: space-around;"><img src="~/Content/images/download (1).jpg" /></div>
+            <div style="width:100%"><img style="width: 190px; height: 190px; float: left; border-radius: 50%" src="@Session["max"]" title="source: imgur.com" /></div>
+            <div style="font-size: 22px; display: flex; justify-content: space-around; margin-top: 5px; margin-bottom: 5px">@Session["ten1"]</div>
+            <div style="display: flex; justify-content: space-around; font-size: 27px; font-family: arial; font-weight: bold; color: red;">HẠNG 1</div>
+        </div>
+        <div style="float: left; display: flex; flex-direction: column; margin-top: 100px; ">
+            <div style="width:100%"><img style="width: 160px; height: 160px; float: left; border-radius: 50%" src="@Session["ba"]" title="source: imgur.com" /></div>
+            <div style="font-size: 22px; display: flex; justify-content: space-around; margin-top: 5px; margin-bottom: 5px">@Session["ten3"]</div>
+            <div style="display: flex; justify-content: space-around; font-size: 27px; font-family: arial; font-weight: bold; color: red;">HẠNG 3</div>
+        </div>
+    </div>
+}
+<div style=" display: flex; align-items: center; font-size: 20px; font-family: Arial; font-weight: bold; padding-left: 20px; padding-bottom: 11px; width: 100%; margin-top: 20px;background-color:black;color:white">
+    <div style="float: left; width: 15%; padding-top: 10px; display: flex; justify-content: space-around;">Hạng</div>
+    <div style="float: left; width: 15%; padding-top: 10px; display: flex; justify-content: space-around;">Hình ảnh</div>
+    <div style="float: left; width: 20%; padding-top: 10px; display: flex; justify-content: space-around;">NickName</div>
+    <div style="float: left; width: 20%; padding-top: 10px; display: flex; justify-content: space-around;">Tên</div>
+    <div style="float: left; width: 15%; padding-top: 10px; display: flex; justify-content: space-around;">Điểm/HĐ/Fl</div>
+    <div style="float: left; width: 15%; padding-top: 10px; display: flex; justify-content: space-around;">Chi tiết</div>
+</div>
+@{
+    int dem = 0;
+}
+@foreach (var item in Model)
+{
+    dem++;
+    <div style=" display: flex; align-items: center; font-size: 20px; font-family: Arial; padding-left: 20px; border: 1px solid; border-top-color: white; padding-bottom: 7px; padding-top: 7px; ">
+        <div style="float: left; width: 15%; padding-top: 10px; display: flex; justify-content: space-around;">@dem</div>
+        <div style="float: left; width: 15%; display: flex; justify-content: space-around; "><img style="width: 90px; height: 90px; display: flex; " src="@item.avatar" title="source: imgur.com" /></div>
+        <div style="float: left; width: 20%; display: flex; justify-content: space-around;">@item.nickname</div>
+        <div style="float: left; width: 20%; display: flex; justify-content: space-around;">@item.ten</div>
+        @if (Session["dkxh"] != null)
+        {
+            if (Session["dkxh"] == "kolcore")
+            {
+                <div style="float: left; width: 15%; display: flex; justify-content: space-around; padding-left: 15px">@item.kolcore</div>
+            }
+            if (Session["dkxh"] == "slHD")
+            {
+                <div style="float: left; width: 15%; display: flex; justify-content: space-around; padding-left: 15px">@item.hopdongs.Where(x => x.trangthai == 4 || x.trangthai == 5).Count()</div>
+            }
+            if (Session["dkxh"] == "tiktok")
+            {
+                <div style="float: left; width: 15%; display: flex; justify-content: space-around; padding-left: 15px">@item.fltiktok</div>
+            }
+        }
+        else
+        {
+            <div style="float: left; width: 15%; display: flex; justify-content: space-around; padding-left: 15px">@item.kolcore</div>
+        }
+        @if (Session["id"] != null)
+        {
+            <div style="float: left; width: 15%; display: flex; justify-content: space-around;"><a href="~/KOL/TrangCaNhan?id=@item.id">Chi tiết</a></div>
+        }
+        @if (Session["id"] == null)
+        {
+            <div style="float: left; width: 15%; display: flex; justify-content: space-around;"><a href="~/Account/Login">Chi tiết</a></div>
+        }
+
+    </div>
+
+}

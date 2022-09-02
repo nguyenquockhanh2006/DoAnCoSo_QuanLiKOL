@@ -1,0 +1,84 @@
+﻿body {
+    background-image: url(https://i.imgur.com/7cSh4S3.png);
+    background-repeat: no-repeat
+}
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#form-DK {
+    border-radius: 5%;
+    max-width: 50%;
+    background-color: white;
+    flex-grow: 1;
+    padding: 30px 30px 70px;
+    box-shadow: 0px 0px 17px 2px rgb(120, 67, 230);
+}
+
+.form-group {
+    margin-top: 15px;
+    margin-bottom: 24px;
+    display: flex;
+    font-family: arial;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.tieude {
+    background-color: white;
+    width: 30%;
+    font-size: 18px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 1px;
+    padding-left: 4px;
+    display: flex;
+    float: left;
+}
+
+.form-control {
+    border: 1px solid rgb(120, 67, 230);
+    background-color: white;
+    width: 70%;
+    font-size: 18px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 4px;
+    padding-left: 1px;
+    display: flex;
+    float: left;
+}
+#form-control2 {
+    border: 1px solid rgb(120, 67, 230);
+    background-color: white;
+    width: 70%;
+    font-size: 18px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 4px;
+    padding-left: 1px;
+    display: flex;
+    float: left;
+}
+.form-submit {
+    background-color: #f5f5f5;
+    border: 1px solid #7843e6;
+    color: #080808;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    transition: 0.25s ease-in-out;
+    margin-top: 30px;
+    width: 200px;
+    margin: auto;
+    font-size: 17px
+}
+
+    .form-submit:hover {
+        background-color: #7843e6;
+        color: white
+    }

@@ -1,0 +1,87 @@
+﻿@model QuanLiKOL.Models.hopdong
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+    
+}
+
+<hr />
+<div>
+    <div style="width:100%; justify-content:center; justify-items:center; float: left; text-align:center;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+    <div style="width: 100%; justify-content: center; justify-items: center; float: left; text-align: center;">Độc lập - Tự do - Hạnh phúc</div>
+    <div style="width: 100%; justify-content: center; justify-items: center; float: left; text-align: center;">_______o0o_______</div>
+
+    <h1 style="width: 100%; justify-content: center; justify-items: center; float: left; text-align: center;">HỢP ĐỒNG BOOKING KOL</h1>
+    <div style="width: 100%; justify-content: right; justify-items: right; float: left; text-align: right;">Tp. Hồ Chí Minh, @Model.ngayyeucau.Value.ToString()</div>
+    <div>
+        <hr />
+        <div style="width:100%; float:left; text-align: right">Mã hợp đồng: @Model.mahd</div>
+        <div style="width:100%; float:left">Thông tin các bên liên quan</div>
+        <div style="width:33%; float:left">
+            <div style="width:100%">Bên A (KOL)</div>
+            <img class="tronvo" src="@Model.KOL.avatar" />
+            <div>Tên: @Model.KOL.ten</div>
+
+        </div>
+        <div style="width: 33%; float: left">
+            <div style="width:100%">Bên B (Khách)</div>
+            <img class="tronvo" src="@Model.khach.avatar" />
+            <div>Tên: @Model.khach.ten</div>
+        </div>
+        <div style="width: 33%; float: left">
+            <div style="width:100%">Bên C (Admin)</div>
+            @if (Model.admin != null)
+            {
+                <img class="tronvo" src="@Model.admin.diachi" />
+                <div>Tên: @Model.admin.ten</div>
+            }
+        </div>
+    </div>
+</div>
+<hr />
+<div>
+    <div style="width:100%; float : left">Thông tin hợp đồng:</div>
+</div>
+<hr />
+<div style="width:100%; float:left; justify-items:center; justify-content:center; display:flex; font-size:20px;">
+    <div style="width: 60%; margin:auto">
+        <div style="width:100%; float:left">
+            Tên hợp đồng: <div style="width:20%; float: left"></div>
+        </div>
+        <div style="width:100%; float:left">
+            Ngày bắt đầu: @Model.ngaybatdau.Value.ToString()
+        </div>
+        <div style="width:100%; float:left">
+            Ngày kết thúc: @Model.ngayketthuc.Value.ToString()
+        </div>
+        <div style="width:100%; float:left">
+            Sản phẩm: @Model.AnhHD
+        </div>
+        <div style="width:100%; float:left">
+            Trị giá:@Model.trigia;
+        </div>
+        <div style="width:100%; float:left">
+            Lĩnh vực: @Model.linhvuc1.tenlv;
+        </div>
+        <div style="width:100%; float:left">
+
+            <textarea disabled rows="10" cols="60">@Model.dieukhoan</textarea>
+        </div>
+        <div style="width:100%; float:left">
+            Trạng thái : @Model.trangthai
+        </div>
+    </div>
+</div>
+

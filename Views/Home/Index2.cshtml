@@ -1,0 +1,59 @@
+﻿@using QuanLiKOL.Models
+<html xmlns="http://www.w3.org/1999/xhtml">
+@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+
+    KOLDbContext db = new KOLDbContext();
+
+    List<KOL> kol = new List<KOL>();
+    kol = db.KOLs.OrderByDescending(x => x.kolcore).ToList();
+
+    List<KOL> lkol = new List<KOL>();
+    int dem = 0;
+    foreach (var c in kol)
+    {
+        dem++;
+        lkol.Add(c);
+        if (dem == 5)
+        {
+            break;
+        }
+    }
+
+    //KOL[] lkol = new KOL[kol.Count];
+    //lkol = kol.ToArray();
+
+}
+<link href="~/Content/css/Index_Home2.css" rel="stylesheet" />
+<div id="top-kol">
+    <div class="top-text">
+        <h1>KOL NỔI BẬT</h1>
+    </div>
+    <div id="kol-description">
+
+        @foreach (var c in lkol)
+        {
+            <div class="top-kol-items">
+                <img src="@c.avatar" alt="Alternate Text" style="width: 220px; height: 230px; object-fit: fill;" />
+                <p class="kol-name">@c.nickname</p>
+                <p class="kol-note">
+                    Kol lĩnh vực: @{
+                        List<linhvucKOL> lv = c.linhvucKOLs.ToList();
+                        foreach (var j in lv)
+                        {
+                            @j.linhvuc.tenlv <span>...</span>
+                            break;
+                        }
+                    }
+                </p>
+                <div class="book-btn"><a href="~/Account/Login">Book ngay!</a></div>
+            </div>
+        }
+    </div>
+</div>
+<!-- End Top KOL -->
+<!-- Start Tin tuc -->
+<div id="news-contain">
+
+</div>
+<!-- End Tin tuc -->

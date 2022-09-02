@@ -1,0 +1,95 @@
+﻿#Main-Menu {
+    display: flex;
+    list-style: none;
+    margin: auto;
+    padding: 0;
+    justify-content: center;
+    background-color: #fde9d0;
+}
+
+    #Main-Menu li {
+        position: relative;
+    }
+
+        #Main-Menu li a {
+            color: #000000;
+            display: block;
+            padding: 18px 20px;
+            text-decoration: none;
+            font-size: 25px;
+        }
+
+    #Main-Menu ul.sub-menu {
+        position: absolute;
+        background-color: #ffffff;
+        padding: 15px 0px;
+        list-style: none;
+        width: 200px;
+        border: 1px solid #a19a9a;
+        display: none;
+    }
+
+    #Main-Menu li:hover > ul.sub-menu {
+        display: block;
+    }
+
+    #Main-Menu ul.sub-menu a {
+        padding: 8px 15px;
+        border-bottom: 1px solid #ff0000;
+    }
+
+    #Main-Menu li:hover > a {
+        border-bottom: 1px solid #ffffff;
+    }
+
+    #Main-Menu ul.sub-menu li:last-child a {
+        border: none;
+    }
+
+    #Main-Menu > li > a {
+        position: relative;
+    }
+
+        #Main-Menu > li > a::before {
+            content: "";
+            height: 4px;
+            width: 0%;
+            background: #ff0000;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            transition: 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+    #Main-Menu > li:hover > a::before {
+        width: 100%;
+    }
+
+.NhapXuat {
+    float: right;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    padding: 0px 20px;
+}
+
+.menu {
+    z-index: 900;
+    width: 100%;
+    bottom: 0;
+}
+
+    .menu label {
+        cursor: pointer;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-radius: 50px;
+        margin: 0 .2em 1em;
+        transition: all .3s ease;
+    }
+
+        .menu label:hover {
+            background: red;
+        }

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<QuanLiKOL.Models.hopdong>
+
+@{
+    ViewBag.Title = "LoadHDChoKOL";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+<link href="~/Content/css/TableStyleSheet.css" rel="stylesheet" />
+<div style="padding:20px">
+    <h2>Contract List Waiting For KOL To Confirm</h2>
+    <hr />
+    <table class="table">
+        <tr style="background-color:gray">
+            <th>
+                Contract Id
+            </th>
+            <th>
+                Contract name
+            </th>
+            <th>
+                Fields
+            </th>
+            <th>
+                Value
+            </th>
+            <th>
+                Start Day
+            </th>
+            <th>
+                End Date
+            </th>
+
+            <th>
+                Status
+            </th>
+
+            <th>
+                Option: Detail
+            </th>
+            <th>
+                Option:
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            DateTime ngay = DateTime.Now;
+            int xet = 0;
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mahd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tenhd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.linhvuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.trigia)
+                </td>
+                <td>
+                    @{
+                        string ngaybd = item.ngaybatdau.Value.Day + "/" + item.ngaybatdau.Value.Month + "/" + item.ngaybatdau.Value.Year;
+                    }
+                    @ngaybd
+                </td>
+                <td>
+                    @{
+                        string ngaykt = item.ngayketthuc.Value.Day + "/" + item.ngayketthuc.Value.Month + "/" + item.ngayketthuc.Value.Year;
+                    }
+                    @ngaykt
+                </td>
+
+                <td>
+                    Wait for KOL
+                </td>
+
+                <td>
+                    @{
+                        string laytt = "\n" + item.mahd + "\n";
+                    }
+                    <strong><a style="color:black" href="~/Admin/showdetail/@laytt">Show Detail</a></strong>
+                </td>
+                <td>
+                    <strong><a style="color:black" href="~/Admin/ThongBaoHopDong/@laytt">Mention For KOL</a></strong>
+                </td>
+                <td>
+                    <strong><a style="color:black" href="~/Admin/Deletedb/@laytt">Delete</a></strong>
+                </td>
+            </tr>
+        }
+        
+    </table>
+</div>

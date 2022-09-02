@@ -1,0 +1,170 @@
+﻿@model QuanLiKOL.Models.KOL
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+
+    <link href="~/Content/css/HoSoEdit.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="wrapper">
+        <form id="hoso" action="EditHoSo" method="post">
+            <input type="text" name="id" value=@Model.id hidden />
+
+            <div class="form-group">
+                <div class="col-md-11">
+                    Link ảnh avatar
+                </div>
+                <input class="form-input" type="text" name="avatar" value="@Model.avatar" />
+            </div>
+            <div class="form-group">
+                <div style="width:100%; justify-items:center;justify-content:center">
+                    <a style="float:right; width:21%;" href="https://imgur.com" target="_blank">Nhận link ảnh</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Nickname</div>
+                <input class="form-input" type="text" name="nickname" value="@Model.nickname" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Tên</div>
+                <input class="form-input" type="text" name="ten" value="@Model.ten" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Ngày sinh</div>
+                @{string ngaysinhne = Model.ngaysinh.Value.Day + "/" + Model.ngaysinh.Value.Month + "/" + Model.ngaysinh.Value.Year;}
+                <input class="form-input" type="date" id="ns" name="ngaysinh" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Địa chỉ</div>
+                <input class="form-input" type="text" name="diachi" value="@Model.diachi" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Số điện thoại</div>
+                <input class="form-input" type="text" name="sdt" value="@Model.sdt" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Link TikTok</div>
+                <input class="form-input" type="text" name="linktiktok" value="@Model.linktiktok" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Gmail</div>
+                <input class="form-input" type="text" name="gmail" value="@Model.gmail" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Lĩnh vực</div>
+            </div>
+            @{
+                KOLDbContext db = new KOLDbContext();
+                string id = Model.id;
+                int an = db.linhvucKOLs.Where(x => x.malv == "AN" && x.IdKOL == id).ToList().Count;
+                int at = db.linhvucKOLs.Where(x => x.malv == "AT" && x.IdKOL == id).ToList().Count;
+                int mp = db.linhvucKOLs.Where(x => x.malv == "MP" && x.IdKOL == id).ToList().Count;
+                int tmdt = db.linhvucKOLs.Where(x => x.malv == "TM" && x.IdKOL == id).ToList().Count;
+                int tt = db.linhvucKOLs.Where(x => x.malv == "TT" && x.IdKOL == id).ToList().Count;
+                int ttr = db.linhvucKOLs.Where(x => x.malv == "TTr" && x.IdKOL == id).ToList().Count;
+            }
+            <div>
+                @{
+                    if (an == 0)
+                    {
+                        <input type="checkbox" name="linhvuc" value="amnhac" class="form-control" /> <span>Âm Nhạc</span> <br>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="linhvuc" value="amnhac" class="form-control" checked /> <span>Âm Nhạc</span> <br>
+
+
+                    }
+                    if (at == 0)
+                    {
+                        <input type="checkbox" name="linhvuc" value="amthuc." class="form-control" /> <span>Ẩm Thực</span> <br>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="linhvuc" value="amthuc." class="form-control" checked /> <span>Ẩm Thực</span> <br>
+
+
+                    }
+                    if (mp == 0)
+                    {
+                        <input type="checkbox" name="linhvuc" value="mypham." class="form-control" /> <span>Mỹ Phẩm</span> <br>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="linhvuc" value="mypham." class="form-control" checked /> <span>Mỹ Phẩm</span> <br>
+                    }
+
+                    if (tmdt == 0)
+                    {
+                        <input type="checkbox" name="linhvuc" value="thuongmai." class="form-control" /> <span>Thương Mại Điện Tử</span> <br>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="linhvuc" value="thuongmai." class="form-control" checked /> <span>Thương Mại Điện Tử</span> <br>
+
+
+                    }
+                    if (tt == 0)
+                    {
+                        <input type="checkbox" name="linhvuc" value="thethao" class="form-control" /> <span>Thể Thao</span> <br>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="linhvuc" value="thethao" class="form-control" checked /> <span>Thể Thao</span> <br>
+                    }
+
+                    if (ttr == 0)
+                    {
+                        <input type="checkbox" name="linhvuc" value="thoitrang" class="form-control" /> <span>Thời Trang</span> <br>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="linhvuc" value="thoitrang" class="form-control" checked /> <span>Thời Trang</span> <br>
+
+
+                    }
+                }
+            </div>
+
+            <input type="submit" value="save" />
+        </form>
+        <script>
+
+            document.getElementById("ns").value = @Model.ngaysinh.Value;
+        </script>
+    </div>
+</body>
+@{
+    int d = Model.ngaysinh.Value.Day;
+    int m = Model.ngaysinh.Value.Month;
+    int y = Model.ngaysinh.Value.Year;
+}
+<script src="~/Content/js/loadns.js"></script>
+<script>
+    var d = @d;
+    var m = @m;
+    var y = @y;
+    setInputDate("#ns", d, m, y);
+</script>
+</html>
+

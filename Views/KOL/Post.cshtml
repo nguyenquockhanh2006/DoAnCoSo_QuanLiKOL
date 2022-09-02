@@ -1,0 +1,71 @@
+﻿@model IEnumerable<QuanLiKOL.Models.BaiVietKOL>
+@using QuanLiKOL.Models; 
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+
+<hr />
+<script src="https://kit.fontawesome.com/1cf4a44777.js" crossorigin="anonymous"></script>
+
+<form action="Post" method="post" id="formbv">
+    <input type="text" name="tieude" placeholder="Tiêu đề" />
+    <textarea name="noidung" cols="50" rows="6"></textarea>
+    <input type="text" name="anh" placeholder="Ảnh" />
+    <input type="submit" value="Dang Bai" />
+</form>
+<hr />
+<h1>Bai viet da dang </h1>
+@if (Model.Count() >0)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <div>
+                <div id="nguoidang">
+                   @{ 
+                       KOLDbContext db = new KOLDbContext();
+                       string s = db.KOLs.Where(x => x.id == item.Id).FirstOrDefault().avatar.ToString();
+                       int fl = db.LuotThichBVKOLs.Where(x => x.MaBV == item.MaBV).ToList().Count;
+                   }
+                <div><img src="@s" /></div>
+                @item.Id
+                @item.ngaydang;
+                </div>
+                <div id="baiviet">
+                    <span>@item.TieuDe</span>
+                    <div><img src="@item.anh" /></div>
+                    <textarea cols="50" rows="6">@item.noidung</textarea>
+                    <div id="luotlike">
+                        @fl <i class="fa-solid fa-thumbs-up"></i>
+                    </div>
+                </div>
+                <div id="binhluan">
+                    @{ 
+                        List<BinhLuanBVKOL> allbl = new List<BinhLuanBVKOL>();
+                        allbl = db.BinhLuanBVKOLs.Where(x => x.MaBV == item.MaBV).ToList();
+                    }
+                    @foreach(var c in allbl)
+                    {
+                    <div id="tungbinhluan">
+                        <span>@c.khach.nickname</span>
+                        <span>@c.ngaybl</span>
+                        <textarea  disabled cols="30" rows="3">@c.Noidung</textarea>
+                    </div>
+                    }
+                </div>
+            </div>
+        </tr>
+    }
+}

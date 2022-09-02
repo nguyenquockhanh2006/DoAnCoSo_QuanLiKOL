@@ -1,0 +1,40 @@
+﻿body {
+}
+
+#slideshow {
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.slide-wrapper {
+    width: 2912px;
+    -webkit-animation: slide 14s ease infinite;
+    font-family: Arial;
+    font-size: 23px;
+}
+
+.slide {
+    display: flex;
+    float: left;
+    width: 11.4%;
+    flex-direction: column;
+    align-items: center
+}
+
+@-webkit-keyframes slide {
+    20% {
+        margin-left: 0px;
+    }
+
+    30% {
+        margin-left: -320px;
+    }
+
+    50% {
+        margin-left: -650px;
+    }
+
+    60% {
+        margin-left: -690px;
+    }
+}

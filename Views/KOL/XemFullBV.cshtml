@@ -1,0 +1,33 @@
+﻿@model QuanLiKOL.Models.baiviet
+
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>XemFullBV</title>
+</head>
+<body>
+    <div style="width: 100%"> 
+        <div style="width: 100%"><strong>@Model.tenbv </strong></div>
+        <div style="width: 100%; justify-content: center; justify-items: center;"><img style="width: 50%; height: auto; object-fit: contain;"  src="@Model.anh"/></div>
+        <div style="width: 100%">@Model.noidung</div>
+    </div>
+</body>
+</html>

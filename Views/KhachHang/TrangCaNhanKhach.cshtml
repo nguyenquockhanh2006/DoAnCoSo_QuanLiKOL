@@ -1,0 +1,100 @@
+﻿@model QuanLiKOL.Models.khach
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+<link href="~/Content/css/TrangCaNhan.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css/HoSoKOL.css" rel="stylesheet" />
+<body>
+    @{
+        string b = @Model.id;
+        string a = Session["id"].ToString();
+        int fl = Model.fls.Count;
+        KOLDbContext db = new KOLDbContext();
+    }
+
+    <div class="avatar">
+        <div>
+            <img style="width: 220px; height: 220px; border-radius: 50%;float:left" src="@Model.avatar" title="source: imgur.com" />
+        </div>
+        <div>
+            <div class="nickname">@Model.nickname</div>
+            <div class="ten">@Model.ten</div>
+            <hr />
+            <div>
+                Đang follow: @fl <i class="fa-solid fa-check"></i>
+                <br />
+                <button><a href="~/KhachHang/LoadDSFollowing?id=@Model.id">Xem chi tiết</a></button>
+            </div>
+            <div class="hosoCN">
+
+                    <img style="float:left; width:30px; height:30px" src="~/Content/images/hs.png" />
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="wrapper">
+        <div id="hoso">
+
+            <div style="display: flex; justify-content: space-evenly;">
+                THÔNG TIN THÊM:
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Nickname</div>
+                <div class="col-md-10">@Model.nickname</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Tên </div>
+                <div class="col-md-10">@Model.ten</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                @{
+                    string ns = Model.ngaysinh.Value.Day + "/" + Model.ngaysinh.Value.Month + "/" + Model.ngaysinh.Value.Year;
+                }
+                <div class="col-md-11">Ngày sinh </div>
+                <div class="col-md-10">@ns</div>
+
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Địa chỉ </div>
+                <div class="col-md-10">@Model.diachi</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Số điện thoại</div>
+                <div class="col-md-10">@Model.sdt</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Gmail</div>
+                <div class="col-md-10">@Model.gmail)</div>
+            </div>
+            <hr />
+            @if (Session["PQ"].ToString() == "KHACH")
+            {
+                <div style="display: flex; justify-content: space-around; font-size: 20px; font-weight: bold; font-family: arial;">
+                    <a href="~/KhachHang/EditHoSo?id=@Model.id" style="text-decoration:none">Chỉnh sửa hồ sơ</a>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+

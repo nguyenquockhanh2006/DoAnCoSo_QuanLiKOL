@@ -1,0 +1,120 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/RegisterKOLStyleSheet.css" rel="stylesheet" />
+    <title>RegisterKOL</title>
+</head>
+<body>
+
+    <div id="wrapper">
+        <form name="frmdangkikol" method="post" action="RegisterKOL" id="form-DK" onsubmit="return KiemTra()">
+            <div style="display: flex; justify-content: space-around;">
+                <img style="width: 250px; height: 100px;"
+                     src="https://i.imgur.com/97sOSkJ.png" />
+            </div>
+            <div class="form-group">
+                <div class="tieude">Tên đăng  nhập:</div><input name="id"
+                                                                type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Mật khẩu:</div><input name="pass"
+                                                          type="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Tên tài khoản:</div><input name="nickname"
+                                                               type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Tên người dùng:</div><input name="name"
+                                                                type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Liên kết tiktok:</div><input name="linktiktok"
+                                                                 type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Ảnh đại diện:</div><input style="float:right" name="avatar"
+                                                              type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div style="width:100%; justify-items:center;justify-content:center">
+                    <a style="float:right; width:20%;" href="https://imgur.com" target="_blank">Nhận link ảnh</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="tieude">Ngày sinh:</div><input name="ngaysinh"
+                                                           type="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Địa chỉ:</div><input name="diachi"
+                                                         type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Gmail:</div><input name="gmail"
+                                                       type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <div class="tieude">Số điện thoại:</div><input name="SDT"
+                                                               type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="linhvuc" value="AT" class="form-control" />Ẩm thực<br />
+                <input type="checkbox" name="linhvuc" value="AN" class="form-control" />âm nhạc<br />
+                <input type="checkbox" name="linhvuc" value="TT" class="form-control" />Thể thao<br />
+                <input type="checkbox" name="linhvuc" value="TM" class="form-control" />Thương mại điện tử<br />
+                <input type="checkbox" name="linhvuc" value="TTr" class="form-control" />Mỹ phẩm<br />
+                <input type="checkbox" name="linhvuc" value="MP" class="form-control" />Thời trang<br />
+            </div>
+            
+            <hr />
+            <div class="form-group">
+                <input type="submit" name="submit" class="form-submit"
+                       value="Đăng kí" />
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script src="~/Content/js/loadns.js"></script>
+<script>
+    var d = 20;
+    var m = 06;
+    var y = 2001;
+    setInputDate("#ngaysinh", d, m, y);
+    function KiemTra() {
+        var id = document.frmdangkikol.id.value;
+        var pass = document.frmdangkikol.pass.value;
+        var nickname = document.frmdangkikol.nickname.value;
+        var name = document.frmdangkikol.name.value;
+        var linktiktok = document.frmdangkikol.linktiktok.value;
+        var avatar = document.frmdangkikol.avatar.value;
+        var diachi = document.frmdangkikol.diachi.value;
+        var gmail = document.frmdangkikol.gmail.value;
+        var SDT = document.frmdangkikol.diachi.value;
+        var loi = "";
+        if (id == "" || pass == "" || nickname == "" || name == "" || linktiktok == "" || avatar == "" || diachi == "" || gmail == "" || SDT == "") {
+            loi += "Vui lòng nhập đủ thông tin!\n";
+        }
+
+        if (pass.length < 8) {
+            loi += "Mật khẩu phải 8 kí tự trởi lên!\n";
+        }
+
+        if (Number.isInteger(SDT) == true) {
+            loi += "SDT phải là số!\n";
+        }
+
+        if (loi != "") {
+            alert(loi);
+            return false;
+        }
+        return true;
+    }
+</script>

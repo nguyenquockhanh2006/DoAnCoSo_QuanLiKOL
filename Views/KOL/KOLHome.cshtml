@@ -1,0 +1,30 @@
+﻿@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+
+}
+@{
+    KOLDbContext db = new KOLDbContext();
+    List<baiviet> bv = db.baiviets.ToList();
+}
+@foreach(var c in bv)
+            {
+<div style="width:48%; height: 300px; background-color:none; float: left; padding:1%">
+    <div style="width:100%; height:20px ;overflow:hidden; background-color:cornflowerblue; color:white">@c.tenbv</div>
+    <div style="width:100%; height:200px ; "> <img style="width: 100%; height: 100%; object-fit: contain;" src="@c.anh" /></div>
+    <div style="width: 100%; height: 40px; float: left; background-color: cornflowerblue; overflow: hidden; ">@c.noidung</div>
+    <div style="width: 100%; height: 20px; float: left; text-align:center ;background-color: cornflowerblue; overflow: hidden; "><a style="color:white" href="~/KOL/XemFullBV?id=@c.mabv">Xem thêm</a></div>
+</div>
+            }

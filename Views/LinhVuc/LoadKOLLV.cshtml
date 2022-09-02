@@ -1,0 +1,101 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+
+@{
+    if (Session["PQ"] != null)
+    {
+        if (Session["PQ"].ToString() == "KOL")
+        {
+            Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+        }
+
+        if (Session["PQ"].ToString() == "KHACH")
+        {
+            Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+        }
+        if (Session["PQ"].ToString() == "ADMIN")
+        {
+            Layout = "~/Views/Shared/_ADMIN.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_layout.cshtml";
+    }
+
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="~/Content/css/DanhSach.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+    <div id="ll">
+        <nav class="container">
+            <ul id="Main-Menu">
+                <li>@Html.ActionLink("Ẩm thực", "LoadKOLLV", new { s = "AT" })</li>
+                <li>@Html.ActionLink("Âm nhạc", "LoadKOLLV", new { s = "AN" })</li>
+                <li>@Html.ActionLink("Mỹ phẩm", "LoadKOLLV", new { s = "MP" })</li>
+                <li>@Html.ActionLink("Thương mại điện tử", "LoadKOLLV", new { s = "TM" })</li>
+                <li>@Html.ActionLink("Thể thao", "LoadKOLLV", new { s = "TT" })</li>
+                <li>@Html.ActionLink("Thời trang", "LoadKOLLV", new { s = "TTr" })</li>
+                <li>@Html.ActionLink("Tất cả", "LoadKOLLV", new { s = "ALL" })</li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+
+    </div>
+    <div style="width:100%">
+        @if (Session["qwer"] != null)
+        {
+            if (Session["qwer"].ToString() == "ALL")
+            {
+                <img style="width:100%; object-fit:contain" src="~/Content/images/TMDT.png" />
+            }
+            if (Session["qwer"].ToString() == "AT")
+            {
+                <img style="width:100%; object-fit:contain" src="~/Content/images/AT.png" />
+            }
+            if (Session["qwer"].ToString() == "AN")
+            {
+                <img style="width:100%; object-fit:contain" src="~/Content/images/AN (2).png" />
+            }
+            if (Session["qwer"].ToString() == "MP")
+            {
+                <img style="width:100%; object-fit:contain" src="~/Content/images/MP.png" />
+            }
+            if (Session["qwer"].ToString() == "TM")
+            {
+                <img style="width:100%; object-fit:contain" src="~/Content/images/TMDT.png" />
+            }
+            if (Session["qwer"].ToString() == "TTr")
+            {
+                <img style="width:100%; object-fit:contain" src="~/Content/images/TTR.png" />
+            }
+            if (Session["qwer"].ToString() == "TT")
+            {
+                <img style="width:100%; object-fit:contain" src="~/Content/images/TT.png" />
+            }
+        }
+
+    </div>
+    <div id="wrapper">
+        <div id="hoso">
+            @foreach (var item in Model)
+            {
+                <div style=" border: 2px solid; border-image-source: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); border-image-slice: 1; width: 300px; height: 250px; margin-left: 20px; margin-top: 30px; float: left">
+                    <div style=" display: flex; justify-content: space-around"><img style=" width: 150px; height: 150px; padding-top: 10px; border-radius:50%" src="@item.avatar" title="source: imgur.com" /></div>
+                    <div style="display: flex; justify-content: space-around; font-weight: bold; font-family: arial; font-size: 25px; padding-top: 10px; ">@item.nickname @item.kolcore</div>
+                    <div style=" text-decoration: none;font-size: 18px; font-family: arial; display: flex; justify-content: space-around;"><a href="~/KOL/TrangCaNhan?id=@item.id">Chi tiết</a></div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

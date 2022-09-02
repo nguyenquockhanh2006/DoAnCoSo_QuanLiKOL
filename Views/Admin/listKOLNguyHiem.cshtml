@@ -1,0 +1,93 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+
+@{
+    ViewBag.Title = "listKOLNguyHiem";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+<link href="~/Content/css/TableStyleSheet.css" rel="stylesheet" />
+
+<div style="padding:20px">
+    <h2>Kol List In Danger</h2>
+    <hr />
+    <table class="table">
+        <tr style="background-color:gray">
+            <th>
+                Id KOL
+            </th>
+            <th>
+                Nick Name
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Follow
+            </th>
+            <th>
+                Fl TikTok
+            </th>
+            <th>
+                KOL Core
+            </th>
+            <th>
+                Fields
+            </th>
+
+            <th>
+                Option Show Detail
+            </th>
+            <th>
+                Option Delete
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nickname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sdt)
+        </td>
+        <td>
+            @{
+                int a = (int)item.kolcore;
+                int b = (int)item.fltiktok;
+                int fl = a - b;
+            }
+            @fl
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fltiktok)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kolcore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.malv)
+        </td>
+        <td>
+            @{
+                string laytt = "" + item.id + "";
+            }
+            <a href="~/Admin/showdetailKOL/@laytt">Show Detail</a>
+        </td>
+        <td>
+            <a href="~Admin/DeleteKOL/@laytt">Delete</a>
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>
+

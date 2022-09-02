@@ -1,0 +1,80 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+@{
+    Layout = null;
+}
+<head>
+    <title>Booking KOL</title>
+    <meta charset="utf-8" />
+    <link href="~/Content/css/Index_Home2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/assets/fonts/themify-icons-font/themify-icons/themify-icons.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <ul id="main-menu">
+                <li><a href="~/Account/Login">Booking KOL</a></li>
+                <li><a href="~/Home/Index2">Trang chủ</a></li>
+                <li><a href="~/BangXH/All?lv=All">Bảng xếp hạng</a></li>
+                    
+                @*<li><a href="#">Lĩnh Vực</a></li>*@
+                <li><a href="#footer">Tư vấn</a></li>
+            </ul>
+            <div class="main-menu-right">
+                <a href="~/Account/Login">Đăng nhập</a>
+                <a href="~/Account/Register">Đăng ký</a>
+            </div>
+        </div>
+        <div id="slider">
+            <video style="width:100%; height: auto; object-fit:contain" class="video-slider" autoplay loop muted playsinline>
+                <source src="~/Content/images/BookingKOL.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div  id="content">
+            <!-- Start Top KOL -->
+            @RenderBody()
+        </div>
+        <!-- Footer -->
+        <div id="footer">
+            <div class="boxcenter">
+                <div class="box-items">
+                    <h4>OUR TEAM</h4>
+                    <div class="mem-list">
+                        <img src="https://i.imgur.com/iEq7E2R.jpg" alt="" class="mem-img">
+                        <img src="~/Content/assets/img/mem1.jpg" alt="" class="mem-img">
+                        <img src="~/Content/assets/img/mem2.jpg" alt="" class="mem-img">
+                    </div>
+                </div>
+                <div class="box-items">
+                    <h4>THEO DÕI CHÚNG TÔI</h4>
+                    <div class="social">
+                        <a href=""><i class="social-icons ti-facebook"></i></a>
+                        <a href=""><i class="social-icons ti-instagram"></i></a>
+                        <a href=""><i class="social-icons ti-twitter"></i></a>
+                        <a href=""><i class="social-icons ti-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="box-items">
+                    <h4>HƯỚNG DẪN</h4>
+                    <div class="links"><a href="">Giới thiệu</a></div>
+                    <div class="links"><a href="">Điều khoản</a></div>
+                    <div class="links"><a href="">Hướng dẫn sử dụng</a></div>
+                    <div class="links"><a href="">Chính sách bảo mật</a></div>
+                    <div class="links"><a href="">Thanh toán</a></div>
+                </div>
+                <div class="box-items">
+                    <h4>LIÊN HỆ</h4>
+                    <div class="address">Website: bookingkol.vn</div>
+                    <div class="address">Email: meliodas@gmail.com</div>
+                    <div class="address">Số điện thoại: 0789887777 - 0798778888</div>
+                    <div class="address">Trụ sở: 475A Điện Biên Phủ, P.25, Q. Bình Thạnh</div>
+                    <div class="address">Chi nhánh 1: 475B Điện Biên Phủ, P.25, Q. Bình Thanh</div>
+                    <div class="address">Chi nhánh 2: 31/36 Ung Văn Khiêm, P.25, Q. Bình Thạnh</div>
+                </div>
+            </div>
+            <div class="boxcenter2 text-center colorc">
+                Booking KOL® All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

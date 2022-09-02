@@ -1,0 +1,287 @@
+﻿@using QuanLiKOL.Models
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/Content/css/KHACH.css" rel="stylesheet" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="~/Content/js/KHACH.js"></script>
+<link href="~/Content/css/Index_Home2.css" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/1cf4a44777.js" crossorigin="anonymous"></script>
+<link href="~/Content/css/TableStyleSheet.css" rel="stylesheet" />
+@{ KOLDbContext db = new KOLDbContext();
+    string idkhach = Session["id"].ToString();
+    var k = db.khaches.Where(x => x.id == idkhach).FirstOrDefault();
+    string avatar = k.avatar;
+    DateTime ngay = DateTime.Now;
+    int tuoi = DateTime.Now.Year - k.ngaysinh.Value.Year;
+    int sohd = k.hopdongs.Count;
+    int chokol = k.hopdongs.Where(x => x.trangthai == 1).ToList().Count;
+    int choduyt = k.hopdongs.Where(x => x.trangthai == 2).ToList().Count;
+    int chuatt = k.hopdongs.Where(x => x.trangthai == 3).ToList().Count;
+    int danghl = k.hopdongs.Where(x => x.trangthai == 4).ToList().Count;
+    int hethan = k.hopdongs.Where(x => x.trangthai == 5).ToList().Count;
+    var llv = k.linhvucKhaches.ToList();
+    List<string> llv2 = new List<string>();
+    List<string> llv3 = new List<string>();
+    foreach (var c in llv)
+    {
+        llv2.Add(c.linhvuc.tenlv);
+        llv3.Add(c.linhvuc.malv);
+    }
+    int[] lint = new int[6];
+    for (int i = 0; i < 6; i++) { lint[i] = 0; }
+    foreach (var c in llv3) { if (c == "AN") { lint[0] = 1; } }
+    foreach (var c in llv3) { if (c == "AT") { lint[1] = 1; } }
+    foreach (var c in llv3) { if (c == "MP") { lint[2] = 1; } }
+    foreach (var c in llv3) { if (c == "TM") { lint[3] = 1; } }
+    foreach (var c in llv3) { if (c == "TT") { lint[4] = 1; } }
+    foreach (var c in llv3) { if (c == "TTr") { lint[5] = 1; } }
+    string bxhns = "";
+    if (Session["dk"] != null) { bxhns = Session["dk"].ToString(); }
+    if (Session["dk"] != null && Session["dk"].ToString() == "All") { bxhns = ""; }
+    List<KOL> listbxh = db.KOLs.OrderByDescending(x => x.kolcore).ToList();
+    var lbxh = listbxh.ToArray();
+    string s = "ALL";
+
+    var listsl = db.KOLs.OrderByDescending(x => x.hopdongs.Count).ToArray();
+    string[] dk = new string[5];
+    for (int i = 0; i < 5; i++)
+    {
+        int a = i + 1;
+        dk[i] = a.ToString();
+    }
+}
+<div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">KOL BOOKING</a>
+        </div>
+        <div class="collapse navbar-collapse js-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown mega-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trang cá nhân <span class="caret"></span></a>
+                    <ul class="dropdown-menu mega-dropdown-menu" id="rotxuongtrangcanhan">
+                        <li class="col-sm-3">
+                            <ul style="color:white">
+                                <li class="dropdown-header"></li>
+                                <img id="menCollection" class="tronvo" src="@avatar" data-ride="carousel" />
+                                <li><strong><i class="fa-solid fa-signature"></i>@k.nickname</strong></li>
+                                <li class="divider"></li>
+                                <li><i class="fa-solid fa-cake-candles"></i>@tuoi</li>
+                                <li class="divider"></li>
+                                <li><i class="fa-solid fa-phone"></i>@k.sdt</li>
+                                <li class="divider"></li>
+                                <li><i class="fa-solid fa-square-envelope"></i>@k.gmail</li>
+                                <li class="divider"></li>
+                                <li><button><a href="~/KhachHang/TrangCaNhanKhach?id=@k.id"><i class="fa-solid fa-eye"></i>Xem chi tiết</a></button></li>
+                                <li class="divider"></li>
+                                <li><button><a><i class="fa-solid fa-screwdriver-wrench"></i>Sửa thông tin</a></button></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Đang follow @k.fls.Count</li>
+                                <li><button><a href="~/KhachHang/CTfollow"><i class="fa-solid fa-eye"></i>Xem chi tiết</a></button></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Hợp đồng: @sohd</li>
+                                <li> <a style="color:white" href="~/KhachHang/loadhdtheodk?trang=1"><i class="fa-solid fa-eye"></i> Chờ KOL xác nhận: @chokol </a></li>
+                                <li> <a style="color:white" href="~/KhachHang/loadhdtheodk?trang=2"><i class="fa-solid fa-eye"></i> Chờ Admin duyệt: @choduyt </a></li>
+                                <li> <a style="color:white" href="~/KhachHang/loadhdtheodk?trang=3"><i class="fa-solid fa-eye"></i> Chưa thanh toán: @chuatt </a></li>
+                                <li> <a style="color:white" href="~/KhachHang/loadhdtheodk?trang=4"><i class="fa-solid fa-eye"></i> Đang hiệu lực: @danghl </a></li>
+                                <li> <a style="color:white" href="~/KhachHang/loadhdtheodk?trang=5"><i class="fa-solid fa-eye"></i> Hết hạn: @hethan </a></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Lĩnh vực quan tâm: @llv2.Count</li>
+                                <li class="divider"></li>
+                                <form style="color:white" method="post" action="~/KhachHang/thaydoilinhvuc">
+
+                                    @if (lint[0] == 1)
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="amnhac" checked /><span>Âm nhạc</span><br /> }
+                                    else
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="amnhac" /><span>Âm nhạc</span><br />}
+
+                                    @if (lint[1] == 1)
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="amthuc" checked /><span>Ẩm thực</span><br />}
+                                    else
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="amthuc" /><span>Ẩm thực</span><br />}
+
+                                    @if (lint[2] == 1)
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="mypham" checked /><span>Mỹ phẩm</span> <br />}
+                                    else
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="mypham" /><span>Mỹ phẩm</span><br />}
+
+                                    @if (lint[3] == 1)
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="thuongmai" checked /> <span>Thương mại điện tử</span><br />}
+                                    else
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="thuongmai" /> <span>Thương mại điện tử</span><br />}
+
+                                    @if (lint[4] == 1)
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="thethao" checked /> <span>Thể thao</span><br />}
+                                    else
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="thethao" /><span>Thể thao</span><br />}
+
+                                    @if (lint[5] == 1)
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="thoitrang" checked /><span>Thời trang</span> <br />}
+                                    else
+                                    {
+                                        <input name="linhvuc" type="checkbox" value="thoitrang" /><span>Thời trang</span><br />}
+
+                                    <input style="color:cornflowerblue" type="submit" value="Thay đổi" />
+                                </form>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Gợi ý KOL</li>
+                                <form method="post" action="~/KhachHang/GoiYKOL">
+                                    <select style="width:100%" name="linhvuc">
+                                        <option value="AN">Âm nhạc</option>
+                                        <option value="AT">Ẩm thực</option>
+                                        <option value="TM">Thương mại điện tử</option>
+                                        <option value="MP">Mỹ phẩm</option>
+                                        <option value="TT">Thể thao</option>
+                                        <option value="TTr">Thời trang</option>
+                                    </select>
+                                    <div style="width:100%">
+                                        <input type="radio" name="loaihd" value="nh" />Ngắn hạn
+                                        <input type="radio" name="loaihd" value="dh" />Dài hạn
+                                    </div>
+                                    <div style="width:100%">
+                                        <span>Trị giá:</span>
+                                        <input type="number" name="trigia" />
+                                    </div>
+                                    <div style="width:100%">
+                                        <input type="submit" value="Xem gợi ý" />
+                                    </div>
+                                </form>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown mega-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sự kiện <span class="caret"></span></a>
+                    <ul class="dropdown-menu mega-dropdown-menu" style="background-color: rgba(68, 0, 201, 0.6); color: white;">
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Bảng Xếp Hạng - Điểm KOL</li>
+                                <li>
+                                    <img src="@listbxh[0].avatar" class="tron" />
+                                    <strong><a style="color:white" href="~/KOL/TrangCaNhan?id=@lbxh[0].id">@lbxh[0].nickname (@lbxh[0].kolcore) <i class="fa-solid fa-eye"></i> </a></strong>
+                                </li>
+                                <li>
+                                    <img src="@listbxh[1].avatar" class="tron" />
+                                    <strong><a style="color:white" href="~/KOL/TrangCaNhan?id=@lbxh[1].id">@lbxh[1].nickname (@lbxh[1].kolcore) <i class="fa-solid fa-eye"></i></a></strong>
+                                </li>
+                                <li>
+                                    <img src="@listbxh[2].avatar" class="tron" />
+                                    <strong><a style="color:white" href="~/KOL/TrangCaNhan?id=@lbxh[2].id">@lbxh[2].nickname (@lbxh[2].kolcore) <i class="fa-solid fa-eye"></i></a></strong>
+                                </li>
+                                <li><button><a href="~/BangXH/All?lv=All" style="color:black">Xem chi tiet</a></button></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Bảng xếp hạng - SL hợp đồng</li>
+                                <li>
+                                    <img src="@listbxh[0].avatar" class="tron" />
+                                    <strong><a style="color:white" href="~/KOL/TrangCaNhan?id=@listsl[0].id">@listsl[0].nickname (@listsl[0].hopdongs.Count) <i class="fa-solid fa-eye"></i></a></strong>
+                                </li>
+                                <li>
+                                    <img src="@listbxh[1].avatar" class="tron" />
+                                    <strong><a style="color:white" href="~/KOL/TrangCaNhan?id=@listsl[1].id">@listsl[1].nickname (@listsl[1].hopdongs.Count) <i class="fa-solid fa-eye"></i></a></strong>
+                                </li>
+                                <li>
+                                    <img src="@listbxh[2].avatar" class="tron" />
+                                    <strong><a style="color:white" href="~/KOL/TrangCaNhan?id=@listsl[2].id">@listsl[2].nickname (@listsl[2].hopdongs.Count) <i class="fa-solid fa-eye"></i></a></strong>
+                                </li>
+                                <li><button><a href="~/BangXH/All?lv=HDg" style="color:black">Xem chi tiet</a></button></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul style="color:white">
+                                <li class="dropdown-header">Các lựa chọn</li>
+                                <li><a style="color:white" href="~/KhachHang/LoadBVQuanTam">Bài viết có thể xem</a></li>
+                                <li><a style="color:white" href="~/BangXH/All?lv=All">Bảng xếp hạng</a></li>
+                                <li><a style="color:white" href="~/LinhVuc/LoadKOLLV?s=ALL">Tất cả KOL</a></li>
+                                <li><a style="color:white" href="~/KhachHang/GoiYKOL">Gợi ý KOL</a></li>
+                                <li><a style="color:white" href="#footer">Tông tin trang web</a></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown mega-dropdown">
+                    <a href="~/KhachHang/TimKiemKOL">Tìm kiếm KOL</a>
+                </li>
+                <li class="dropdown mega-dropdown">
+                    <a href="#footer">Về chúng tôi</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="~/Account/Logout">Logout</a></li>
+            </ul>
+        </div><!-- /.nav-collapse -->
+    </nav>
+    <marquee style="width:100%; float:left; font-size:25px; color: white;">@db.cautrucs.Where(x => x.ma == 1).FirstOrDefault().ct1.ToString() </marquee>
+    <div style="width:100%; min-height:900px ;float:left; background-color:aliceblue">
+        @RenderBody()
+    </div>
+</div>
+<div id="footer">
+    <div class="boxcenter">
+        <div class="box-items">
+            <h4>OUR TEAM</h4>
+            <div class="mem-list">
+                <img src="https://i.imgur.com/iEq7E2R.jpg" alt="" class="mem-img">
+                <img src="~/Content/assets/img/mem1.jpg" alt="" class="mem-img">
+                <img src="~/Content/assets/img/mem2.jpg" alt="" class="mem-img">
+            </div>
+        </div>
+        <div class="box-items">
+            <h4>THEO DÕI CHÚNG TÔI</h4>
+            <div class="social">
+                <a href=""><i class="social-icons ti-facebook"></i></a>
+                <a href=""><i class="social-icons ti-instagram"></i></a>
+                <a href=""><i class="social-icons ti-twitter"></i></a>
+                <a href=""><i class="social-icons ti-youtube"></i></a>
+            </div>
+        </div>
+        <div class="box-items">
+            <h4>HƯỚNG DẪN</h4>
+            <div class="links"><a href="">Giới thiệu</a></div>
+            <div class="links"><a href="">Điều khoản</a></div>
+            <div class="links"><a href="">Hướng dẫn sử dụng</a></div>
+            <div class="links"><a href="">Chính sách bảo mật</a></div>
+            <div class="links"><a href="">Thanh toán</a></div>
+        </div>
+        <div class="box-items">
+            <h4>LIÊN HỆ</h4>
+            <div class="address">Website: bookingkol.vn</div>
+            <div class="address">Email: meliodas@gmail.com</div>
+            <div class="address">Số điện thoại: 0789887777 - 0798778888</div>
+            <div class="address">Trụ sở: 475A Điện Biên Phủ, P.25, Q. Bình Thạnh</div>
+            <div class="address">Chi nhánh 1: 475B Điện Biên Phủ, P.25, Q. Bình Thanh</div>
+            <div class="address">Chi nhánh 2: 31/36 Ung Văn Khiêm, P.25, Q. Bình Thạnh</div>
+        </div>
+    </div>
+    <div class="boxcenter2 text-center colorc">
+        Booking KOL® All Rights Reserved.
+    </div>
+</div>

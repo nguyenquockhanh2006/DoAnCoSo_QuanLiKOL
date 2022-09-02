@@ -1,0 +1,93 @@
+﻿
+<!DOCTYPE html>
+@{ 
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/RegisterKOLStyleSheet.css" rel="stylesheet" />
+    <title>RegisterKhach</title>
+</head>
+<body>
+
+    <div id="wrapper">
+        <form method="post" action="RegisterKhach" id="form-DK">
+            <div style="display: flex; justify-content: space-around;">
+                <img style="width: 250px; height: 100px;"
+                     src="https://i.imgur.com/97sOSkJ.png" />
+            </div>
+            @if (Session["LoiDK"] != "")
+            {
+                <div style="color:red" class="form-group">
+                    @Session["LoiDK".ToString()]
+                </div>
+            }
+
+            @*<div class="form-group">
+                    @{
+                        string loi = Session[“Id”].ToString();
+                    }
+                    @if (loi != null)
+                    {
+                        <div class="form-control"> <a>@loi</a> </div>
+                    }
+                </div>*@
+            <div class="form-group">
+                <div class="tieude">Tên đăng  nhập:</div><input name="id"
+                                                                type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Mật khẩu:</div><input name="pass"
+                                                          type="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Tên tài khoản:</div><input name="nickname"
+                                                               type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Tên người dùng:</div><input name="name"
+                                                                type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Ảnh đại diện:</div><input style="float:right" name="avatar"
+                                                              type="text" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <div class="tieude">Ngày sinh:</div><input name="ngaysinh"
+                                                           type="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Địa chỉ:</div><input name="diachi"
+                                                         type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Gmail:</div><input name="gmail"
+                                                       type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <div class="tieude">Số điện thoại:</div><input name="SDT"
+                                                               type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div style="width: 100%">
+                    Lĩnh vực quan tâm: 
+                </div>
+                <input type="checkbox" name="linhvuc" value="AT" class="form-control" />Ẩm thực<br />
+                <input type="checkbox" name="linhvuc" value="AN" class="form-control" />âm nhạc<br />
+                <input type="checkbox" name="linhvuc" value="TT" class="form-control" />Thể thao<br />
+                <input type="checkbox" name="linhvuc" value="TM" class="form-control" />Thương mại điện tử<br />
+                <input type="checkbox" name="linhvuc" value="TTr" class="form-control" />Mỹ phẩm<br />
+                <input type="checkbox" name="linhvuc" value="MP" class="form-control" />Thời trang<br />
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" name="submit" class="form-submit"
+                       value="Đăng kí" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

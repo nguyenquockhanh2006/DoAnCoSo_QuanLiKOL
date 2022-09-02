@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/LoginStyleSheet.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+<body>
+
+    <div id="wrapper">
+        <form action="Login" method="post" id="formDH">
+            <div style="display: flex; justify-content: space-around;">
+                <img style="width: 250px; height: 100px;"
+                     src="https://i.imgur.com/vz0B8i8.png" />
+            </div>
+            <div class="form-group">
+
+                <input type="text" name="taikhoan" class="form-input"
+                       placeholder="Tên tài khoản!" />
+            </div>
+            <div class="form-group">
+
+                <input type="password" name="matkhau" class="form-input"
+                       placeholder="Mật khẩu!" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" name="submit" class="form-submit"
+                       value="Đăng nhập" />
+            </div>
+            <div style="color: mediumpurple; font-size:18px ">
+                <span style="width:100%; float:left"><a href="#####">Quên mật khẩu?</a></span>
+                <span>Chưa có tài khoản ? </span><a href="~/Account/Register">Đăng kí</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

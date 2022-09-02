@@ -1,0 +1,77 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+@{ 
+    KOLDbContext db = new KOLDbContext();
+    var ct = db.cautrucs.Where(x => x.ma == 1).FirstOrDefault();
+}
+<hr />
+<form action="GoiYKOL" method="post">
+    <select style="width:100%" name="linhvuc">
+        <option value="AN">Âm nhạc</option>
+        <option value="AT">Ẩm thực</option>
+        <option value="TM">Thương mại điện tử</option>
+        <option value="MP">Mỹ phẩm</option>
+        <option value="TT">Thể thao</option>
+        <option value="TTr">Thời trang</option>
+    </select>
+    <div style="width:100%">
+        <input type="radio" name="loaihd" value="nh" />Ngắn hạn
+        <input type="radio" name="loaihd" value="dh" />Dài hạn
+    </div>
+    <div style="width:100%">
+        <span>Trị giá:</span>
+        <input type="number" name="trigia" /> 
+    </div>
+    <div style="width:100%">
+        <input type="submit" value="Xem gợi ý" />
+    </div>
+    
+ </form>
+
+@foreach (var c in Model)
+{
+    string a = ct.koln1000.ToString();
+
+    if (c.kolcore > 1000)
+    { a = ct.kol10005000.ToString(); }
+    if (c.kolcore > 5000)
+    { a = ct.kol515.ToString(); }
+    if (c.kolcore > 15000)
+    { a = ct.kolt15k.ToString(); }
+    
+    <hr />
+    <table>
+        <tr>
+            <td style="width:250px"><img style="float:right;" class="tronvo" src="@c.avatar" /></td>
+            <td style="width:50%">
+                <strong>@c.nickname</strong><a href="~/KOL/TrangCaNhan/@c.id">Xem trang cá nhân</a>
+                <br />
+                <strong>KOL core: </strong>@c.kolcore
+                <br />
+                <span>Giá: @a VNĐ </span>
+                <hr />
+                <button><a href="~/KhachHang/LoaiHD/@c.id">Book KOL</a></button>
+                <hr />
+            </td>
+        </tr>
+        
+    </table>
+
+}
+<hr />
+<br />

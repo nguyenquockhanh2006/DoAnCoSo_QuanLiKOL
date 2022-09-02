@@ -1,0 +1,30 @@
+﻿.avatar {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 100px;
+    padding-top: 50px;
+    /*   width:25%;*/
+}
+
+.nickname {
+    font-size: 30px;
+    font-family: arial;
+    font-weight: bold;
+    padding-left: 80px;
+    padding-top: 40px;
+}
+
+.ten {
+    padding-top: 11px;
+    padding-left: 80px;
+    font-size: 20px;
+    font-family: arial;
+    color: #7843e6;
+}
+
+.hinhanh {
+    padding: 50px;
+}
+
+.anhdang {
+}

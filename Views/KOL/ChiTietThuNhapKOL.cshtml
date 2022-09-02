@@ -1,0 +1,82 @@
+﻿@model IEnumerable<QuanLiKOL.Models.hopdong>
+
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+
+}
+
+
+<meta name="viewport" content="width=device-width" />
+<link href="~/Content/css/TableStyleSheet.css" rel="stylesheet" />
+<title>loadhdtheodk</title>
+
+<table class="table">
+    <tr>
+        <th>
+            Mã hợp đồng
+        </th>
+        <th>
+            Tên hợp đồng
+        </th>
+        <th>
+            Bên A(KOL)
+        </th>
+        <th>
+            Bên B(Khách)
+        </th>
+        <th>
+            Bên C (Admin)
+        </th>
+        <th>
+            Trị giá
+        </th>
+        <th>
+            Option
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.mahd
+            </td>
+            <td>
+                @item.tenhd
+            </td>
+            <td>
+                <a href="~/KOL/TrangCaNhan?id=@item.KOL.id">@item.KOL.ten</a>
+            </td>
+            <td>
+                <a href="~/Khach/TrangCaNhanKhach?id=@item.khach.id">@item.KOL.ten</a>
+            </td>
+            <td>
+                @if (item.admin != null)
+                {
+                    <span>@item.admin.ten</span>
+                }
+            </td>
+            <td>
+                @item.trigia
+            </td>
+            <td>
+                <a href="~/KhachHang/CTHopDong/@item.mahd">Xem chi tiết</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+

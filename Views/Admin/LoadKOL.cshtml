@@ -1,0 +1,107 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+
+@{
+    ViewBag.Title = "LoadKOL";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+
+
+<link href="~/Content/css/TableStyleSheet.css" rel="stylesheet" type="text/css" />
+<style>
+    .lv {
+        float: left;
+        padding: 20px;
+    }
+
+    .tdip {
+        padding: 15px;
+    }
+</style>
+
+<div style="padding:10px">
+    <h2>KOL LIST</h2>
+    <hr />
+    <form action="LoadKOL" method="post" style="width:100%; font-size:18px">
+
+        <div class="lv"><input class="tdip" type="radio" name="linhvuc" value="All" checked />All</div>
+        <div class="lv"><input class="tdip" type="radio" name="linhvuc" value="AN" />Music</div>
+        <div class="lv"><input class="tdip" type="radio" name="linhvuc" value="AT" />Culinary</div>
+        <div class="lv"><input class="tdip" type="radio" name="linhvuc" value="TT" />Sport</div>
+        <div class="lv"><input class="tdip" type="radio" name="linhvuc" value="MP" />Cosmetics</div>
+        <div class="lv"><input class="tdip" type="radio" name="linhvuc" value="TM" />Ecommerce</div>
+        <div class="lv"><input class="tdip" type="radio" name="linhvuc" value="TTr" />Fashion</div>
+        <div class="lv"><input type="submit" value="Show" /></div>
+    </form>
+    <hr style="width:100%" />
+    <table class="table">
+        <tr style="background-color:gray">
+            <th>
+                Id KOL
+            </th>
+            <th>
+                Nick Name
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Follow
+            </th>
+            <th>
+                Fl TikTok
+            </th>
+            <th>
+                KOL Core
+            </th>
+            <th>
+                Fields
+            </th>
+
+            <th>
+                Option
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sdt)
+                </td>
+                <td>
+                    @{
+                        int a = (int)item.kolcore;
+                        int b = (int)item.fltiktok;
+                        int fl = a - b;
+                    }
+                    @fl
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fltiktok)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kolcore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.malv)
+                </td>
+                <td>
+                    <a href="#####">Show Detail</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

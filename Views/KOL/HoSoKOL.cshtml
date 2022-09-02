@@ -1,0 +1,84 @@
+﻿@model QuanLiKOL.Models.KOL
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/css/HoSoKOL.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="hoso">
+
+            <div style="display: flex; justify-content: space-evenly;">
+                <img style="width: 140px; height: 140px; border-radius: 50%;" src="@Html.DisplayFor(model => model.avatar)" title="source: imgur.com" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">ID </div>
+                <div class="col-md-10">@Html.DisplayFor(model => model.id)</div>
+                @{ string id = Model.id;}
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Nickname</div>
+                <div class="col-md-10">@Html.DisplayFor(model => model.nickname)</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Tên </div>
+                <div class="col-md-10">@Html.DisplayFor(model => model.ten)</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                @{
+                    string ns = Model.ngaysinh.Value.Day + "/" + Model.ngaysinh.Value.Month + "/" + Model.ngaysinh.Value.Year;
+                }
+                <div class="col-md-11">Ngày sinh </div>
+                <div class="col-md-10">@ns</div>
+
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Địa chỉ </div>
+                <div class="col-md-10">@Html.DisplayFor(model => model.diachi)</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Số điện thoại</div>
+                <div class="col-md-10">@Html.DisplayFor(model => model.sdt)</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Link TikTok</div>
+                <div class="col-md-10">@Html.DisplayFor(model => model.linktiktok)</div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-11">Gmail</div>
+                <div class="col-md-10">@Html.DisplayFor(model => model.gmail)</div>
+            </div>
+            <hr />
+            @if (Session["PQ"].ToString() == "KOL")
+            {
+                <div style="display: flex; justify-content: space-around; font-size: 20px; font-weight: bold; font-family: arial;">
+                    <a href="~/KOL/EditHoSo/@id" style="text-decoration:none">Chỉnh sửa hồ sơ</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

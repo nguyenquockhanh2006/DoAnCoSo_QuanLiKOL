@@ -1,0 +1,53 @@
+﻿@model IEnumerable<QuanLiKOL.Models.fl>
+
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+
+    KOLDbContext db = new KOLDbContext();
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LoadDSFollowing</title>
+</head>
+<body>
+    <p>
+        <h1>DANH SÁCH KOL ĐƯỢC THEO DÕI BỞI @Model.FirstOrDefault().khach.nickname</h1>
+    </p>
+    <table class="table">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="tron" src="@item.KOL.avatar" />
+                </td>
+                <td>
+                    @item.KOL.nickname
+                    <br />
+                    <span>KOL core: </span> @item.KOL.kolcore
+                    <br />
+                    <a href="~/KOL/TrangCaNhan?id=@item.idkol">Xem chi tiết</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

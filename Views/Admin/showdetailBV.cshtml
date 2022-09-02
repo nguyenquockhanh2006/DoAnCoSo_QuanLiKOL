@@ -1,0 +1,88 @@
+﻿@model QuanLiKOL.Models.BaiVietKOL
+@using QuanLiKOL.Models
+@{
+    ViewBag.Title = "showdetailBV";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/css/Post.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/1cf4a44777.js" crossorigin="anonymous"></script>
+    <div style="display: flex; justify-content: space-around; font-size: 20px; font-family: arial; margin-bottom: 10px; margin-top: 10px;">Bài Viết</div>
+            <div style="height:auto;">
+                <div id="nguoidang">
+                    @{
+                        var item = Model;
+                        KOLDbContext db = new KOLDbContext();
+                        string s = db.KOLs.Where(x => x.id == item.Id).FirstOrDefault().avatar.ToString();
+                        int fl = db.LuotThichBVKOLs.Where(x => x.MaBV == item.MaBV).ToList().Count;
+                        string ngaydang = item.ngaydang.Value.Day + "/" + item.ngaydang.Value.Month + "/" + item.ngaydang.Value.Year;
+                        string id = "";
+
+                    }
+                    <div style="width:100%; float:left; background-color:lightblue">
+                        
+                        <div style="float:left; width:90%">
+                            <div style="float: left; width:100%; font-size: 20px; font-weight: bold; font-family: arial;"><a style="color:black;" href="~/KOL/TrangCaNhan?id=@item.Id">@item.KOL.nickname</a> &emsp;</div>
+                            <div style="font-family: Arial; font-size: 20px; width: 100%; float:left">@ngaydang</div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div style="width:100%">
+                        <br />
+                        <div style="font-size: 20px; font-family: arial; font-weight: bold; margin-top: 5px; "><span>@item.TieuDe</span></div>
+                        <div style="font-size: 20px; font-family: arial; margin-top: 10px; padding: 7px; ">@item.noidung</div>
+                    </div>
+                    <hr />
+                    <div style=" display: flex; justify-content: space-around;"><img style=" width: 400px; height: 350px;" src="@s" /></div>
+                </div>
+                <div>
+                    <hr />
+                    <div style="width:100%; text-align:right; font-size:25px;" id="luotlike">
+                        @{
+                            var like = item.LuotThichBVKOLs.Where(x => x.idkhach == id).FirstOrDefault();
+                        }
+                        @fl
+                        @if (like == null)
+                        {
+                            <a style="color:black" href="~/KhachHang/Like?mabv=@item.MaBV"><i class="fa-solid fa-thumbs-up"></i></a>
+                        }
+                        else
+                        {
+                            <a style="color:forestgreen" href="~/KhachHang/DisLike?mabv=@item.MaBV"><i class="fa-solid fa-thumbs-up"></i></a>
+                        }
+                        @item.BinhLuanBVKOLs.Count <i class="fa-solid fa-comment"></i>
+                    </div>
+                </div>
+                <div style="justify-content:center; justify-items:center;" id="binhluan">
+                    @{
+                        List<BinhLuanBVKOL> allbl = new List<BinhLuanBVKOL>();
+                        allbl = db.BinhLuanBVKOLs.Where(x => x.MaBV == item.MaBV).ToList();
+                    }
+                    @foreach (var c in allbl)
+                    {
+                        string ngay = c.ngaybl.Value.Day + "/" + c.ngaybl.Value.Month + "/" + c.ngaybl.Value.Year;
+                        <div style="width:100%">
+                            <div style="width:100%; float:left;">
+                                <div style="width:10%; float:left;">
+                                    <img class="tronnhohon" src="@c.khach.avatar" />
+                                </div>
+                                <div style="width:15%; float: left;">
+                                    <div style="width:100%; text-align:left; float:left;"> <strong><a href="~/KhachHang/TrangCaNhanKhach?id=@c.khach.id">@c.khach.nickname</a></strong></div>
+                                    <div style="width:100%; text-align:left; float:left;">@ngay</div>
+                                </div>
+                                <textarea style="width:75%; float:left;" disabled cols="60" rows="3">@c.Noidung</textarea>
+                            </div>
+                        </div>
+                    }
+
+                    
+                </div>
+            </div>
+            <br />
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿@model IEnumerable<QuanLiKOL.Models.BaiVietKOL>
+@using QuanLiKOL.Models;
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/css/Post.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/1cf4a44777.js" crossorigin="anonymous"></script>
+    <div style="display: flex; justify-content: space-around; font-size: 20px; font-family: arial; margin-bottom: 10px; margin-top: 10px;">Bài Viết</div>
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div style="height:auto;" >
+                <div id="nguoidang">
+                    @{
+                        KOLDbContext db = new KOLDbContext();
+                        string s = db.KOLs.Where(x => x.id == item.Id).FirstOrDefault().avatar.ToString();
+                        int fl = db.LuotThichBVKOLs.Where(x => x.MaBV == item.MaBV).ToList().Count;
+                        string ngaydang = item.ngaydang.Value.Day + "/" + item.ngaydang.Value.Month + "/" + item.ngaydang.Value.Year;
+                        string id = Session["id"].ToString();
+                    }
+                    <div style="width:100%; float:left; background-color:lightblue">
+                        <div style="float:left; width:10%">
+                            <img style="float:left" class="tron" src="@item.KOL.avatar" />
+                        </div>
+                        <div style="float:left; width:90%">
+                            <div style="float: left; width:100%; font-size: 20px; font-weight: bold; font-family: arial;"><a style="color:black;" href="~/KOL/TrangCaNhan?id=@item.Id">@item.KOL.nickname</a> &emsp;</div>
+                            <div style="font-family: Arial; font-size: 20px; width: 100%; float:left">@ngaydang</div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div style="width:100%">
+                        <br />
+                        <div style="font-size: 20px; font-family: arial; font-weight: bold; margin-top: 5px; "><span>@item.TieuDe</span></div>
+                        <div style="font-size: 20px; font-family: arial; margin-top: 10px; padding: 7px; ">@item.noidung</div>
+                    </div>
+                    <hr />
+                    <div style=" display: flex; justify-content: space-around;"><img style=" width: 400px; height: 350px;" src="@s" /></div>
+                </div>
+                <div>
+                    <hr />
+                    <div style="width:100%; text-align:right; font-size:25px;" id="luotlike">
+                        @{
+                            var like = item.LuotThichBVKOLs.Where(x => x.idkhach == id).FirstOrDefault();
+                        }
+                        @fl
+                        @if (like == null)
+                        {
+                            <a style="color:black" href="~/KhachHang/Like?mabv=@item.MaBV"><i class="fa-solid fa-thumbs-up"></i></a>
+                        }
+                        else
+                        {
+                            <a style="color:forestgreen" href="~/KhachHang/DisLike?mabv=@item.MaBV"><i class="fa-solid fa-thumbs-up"></i></a>
+                        }
+                        @item.BinhLuanBVKOLs.Count <i class="fa-solid fa-comment"></i>
+                    </div>
+                </div>
+                <div style="justify-content:center; justify-items:center;" id="binhluan">
+                    @{
+                        List<BinhLuanBVKOL> allbl = new List<BinhLuanBVKOL>();
+                        allbl = db.BinhLuanBVKOLs.Where(x => x.MaBV == item.MaBV).ToList();
+                    }
+                    @foreach (var c in allbl)
+                    {
+                        string ngay = c.ngaybl.Value.Day + "/" + c.ngaybl.Value.Month + "/" + c.ngaybl.Value.Year;
+                        <div style="width:100%">
+                            <div style="width:100%; float:left;">
+                                <div style="width:10%; float:left;">
+                                    <img class="tronnhohon" src="@c.khach.avatar" />
+                                </div>
+                                <div style="width:15%; float: left;">
+                                    <div style="width:100%; text-align:left; float:left;"> <strong><a href="~/KhachHang/TrangCaNhanKhach?id=@c.khach.id">@c.khach.nickname</a></strong></div>
+                                    <div style="width:100%; text-align:left; float:left;">@ngay</div>
+                                </div>
+                                <textarea style="width:75%; float:left;" disabled cols="60" rows="3">@c.Noidung</textarea>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Session["PQ"].ToString() == "KHACH")
+                    {
+                        string idk = Session["id"].ToString();
+                        khach kq = db.khaches.Where(x => x.id == id).FirstOrDefault();
+
+                        <div style="width:100%; float:left;">
+                            <div style="width:10%; float:left;">
+                                <img class="tronnhohon" src="@kq.avatar" />
+                            </div>
+                            <div style="width:15%; float: left;">
+                                <div style="width:100%; text-align:left; float:left;"> <strong>@kq.nickname</strong></div>
+                            </div>
+                            <div style="width:75%; float:left">
+                                <form action="BLBVKOL" method="post">
+                                    <input name="mabv" value="@item.MaBV" hidden />
+                                    <textarea name="noidung" placeholder="Bình luận cho bài viết này tại đây!" cols="60" rows="3"></textarea>
+                                    <input type="submit" value="Bình luận" />
+                                </form>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+            <br />
+        }
+    }
+</body>
+</html>

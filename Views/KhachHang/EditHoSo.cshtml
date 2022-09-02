@@ -1,0 +1,88 @@
+﻿@model QuanLiKOL.Models.khach
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+
+    <link href="~/Content/css/HoSoEdit.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="wrapper">
+        <form id="hoso" action="EditHoSo" method="post">
+            <input type="text" name="id" value=@Model.id hidden />
+
+            <div class="form-group">
+                <div class="col-md-11">
+                    Link ảnh avatar
+                </div>
+                <input class="form-input" type="text" name="avatar" value="@Model.avatar" />
+            </div>
+            <div class="form-group">
+                <div style="width:100%; justify-items:center;justify-content:center">
+                    <a style="float:right; width:21%;" href="https://imgur.com" target="_blank">Nhận link ảnh</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Nickname</div>
+                <input class="form-input" type="text" name="nickname" value="@Model.nickname" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Tên</div>
+                <input class="form-input" type="text" name="ten" value="@Model.ten" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Ngày sinh</div>
+               
+                <input class="form-input" type="date" id="ns" name="ngaysinh"  />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Địa chỉ</div>
+                <input class="form-input" type="text" name="diachi" value="@Model.diachi" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Số điện thoại</div>
+                <input class="form-input" type="text" name="sdt" value="@Model.sdt" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">Gmail</div>
+                <input class="form-input" type="text" name="gmail" value="@Model.gmail" />
+            </div>
+            <input type="submit" value="save" />
+        </form>
+
+
+    </div>
+</body>
+@{ 
+    int d = Model.ngaysinh.Value.Day;
+    int m = Model.ngaysinh.Value.Month;
+    int y = Model.ngaysinh.Value.Year;
+}
+<script src="~/Content/js/loadns.js"></script>
+<script>
+    var d = @d;
+    var m = @m;
+    var y = @y;
+    setInputDate("#ns", d, m, y);
+</script>
+</html>
+

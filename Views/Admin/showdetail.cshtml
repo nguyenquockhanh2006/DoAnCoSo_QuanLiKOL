@@ -1,0 +1,37 @@
+﻿@model QuanLiKOL.Models.hopdong
+
+@{
+    ViewBag.Title = "showdetail";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+<link href="~/Content/css/CT_HD.css" rel="stylesheet" />
+<div id="chua">
+    <div class="chen" ></div>
+    <div id="hopdong">
+        <div id="tenhopdong">@Model.tenhd</div>
+        <hr />
+        <div>Lĩnh vực hợp đồng:@Model.linhvuc1.tenlv (@Model.linhvuc)</div>
+        <div>Sản phẩm đại diện: @Model.AnhHD</div>
+        <div>Bên A (KOL) : @Model.bena  - Số điện thoại: @Model.KOL.sdt</div>
+        <div>Bên B (Khách) : @Model.benb  - Số điện thoại: @Model.KOL.sdt</div>
+        @if (Model.benc != null)
+        {
+            <div>Bên C (Người duyệt) : @Model.benc  - Số điện thoại: @Model.admin.sdt</div>
+        }
+        <hr />
+        <div>Điều khoản hợp đồng: @Model.dieukhoan</div>
+        <hr />
+        @{
+            string ngaybd = Model.ngaybatdau.Value.Day.ToString() + "/" + Model.ngaybatdau.Value.Month.ToString() + "/" + Model.ngaybatdau.Value.Year.ToString();
+            string ngaykt = Model.ngayketthuc.Value.Day.ToString() + "/" + Model.ngayketthuc.Value.Month.ToString() + "/" + Model.ngayketthuc.Value.Year.ToString();
+        }
+        <div>Ngày bắt đầu : @ngaybd</div>
+        <div>Ngày kết thúc : @ngaykt </div>
+        <div>Trị giá : @Model.trigia</div>
+    </div>
+    <div class="chen">
+       
+    </div>
+</div>
+
+

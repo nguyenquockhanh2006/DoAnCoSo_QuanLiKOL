@@ -1,0 +1,22 @@
+﻿body {
+}
+#wp{
+    width:100%;
+    
+}
+#chua{
+    width:100%;
+    
+}
+.chen {
+    width: 20%;
+    float: left;
+    background-color: red;
+}
+#hopdong {
+    padding: 30px;
+    width: 60%;
+    float: left;
+    background-color: antiquewhite;
+    color: black;
+}

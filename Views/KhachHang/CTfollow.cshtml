@@ -1,0 +1,50 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+}
+@{
+    KOLDbContext db = new KOLDbContext();
+    var ct = db.cautrucs.Where(x => x.ma == 1).FirstOrDefault();
+}
+<hr />
+
+@foreach (var c in Model)
+{
+    string a = ct.koln1000.ToString();
+
+    if (c.kolcore > 1000)
+    { a = ct.kol10005000.ToString(); }
+    if (c.kolcore > 5000)
+    { a = ct.kol515.ToString(); }
+    if (c.kolcore > 15000)
+    { a = ct.kolt15k.ToString(); }
+    <hr />
+    <div style="width:100%">
+        <div style="width:40%; float:left"><img class="tronvo" src="@c.avatar" /></div>
+        <div style="width:60%; float:right">
+            <strong>@c.nickname</strong><a href="~/KOL/TrangCaNhan/@c.id">Xem trang cá nhân</a>
+            <hr />
+            <strong>KOL core: </strong>@c.kolcore
+            <hr />
+            <span>Giá: @a</span>
+            <button><a href="~/KhachHang/LoaiHD/@c.id">Book KOL</a></button>
+            <hr />
+        </div>
+        <hr />
+    </div>
+
+
+}

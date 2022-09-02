@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QuanLiKOL.Models.fl>
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+
+    KOLDbContext db = new KOLDbContext();
+
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>XemFL</title>
+    <link href="~/Content/css/KHACH.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        <h1> NHỮNG KHÁCH HÀNG ĐÃ FOLLOW BẠN!</h1>
+    </p>
+    <table class="table">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="tron" src="@item.khach.avatar" />
+                </td>
+                @{ 
+                    int hopdong = db.hopdongs.Where(x => x.khach.id == item.idkhach && x.KOL.id == item.idkol).ToList().Count;
+                    }
+            <td>
+                @item.khach.nickname
+                <br />
+                <span>Số hợp đồng với bạn: </span> @hopdong
+                <br />
+                <a href="~/KhachHang/TrangCaNhanKhach?id=@item.idkhach">Xem chi tiết</a>
+            </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

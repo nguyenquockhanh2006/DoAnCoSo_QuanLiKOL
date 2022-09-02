@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ab3b663fef7443ba5e811c651e1e35d" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyKOLModel.admin" Width="1.5" PointX="3.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.Anhduocdang" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.baiviet" Width="1.5" PointX="6" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.BaiVietKOL" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.BinhLuanBVKOL" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.cautruc" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.fl" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.hopdong" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.khach" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.KOL" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.linhvuc" Width="1.5" PointX="5.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.linhvucKhach" Width="1.5" PointX="8" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.linhvucKOL" Width="1.5" PointX="8" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.LuotThichBVKOL" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.taikhoan" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.ThoiGianBieuKOL" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyKOLModel.ToCao" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_baiviet_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_hopdong_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_Anhduocdang_KOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_BaiVietKOL_KOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_BinhLuanBVKOL_BaiVietKOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_LuotThichBVKOL_BaiVietKOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_BinhLuanBVKOL_khach" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_fl_khach" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_fl_KOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_hopdong_khach" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_hopdong_KOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_hopdong_linhvuc" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_ThoiGianBieuKOL_hopdong" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_linhvucKhach_khach" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_LuotThichBVKOL_khach" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_linhvucKOL_KOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_ThoiGianBieuKOL_KOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_ToCao_KOL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_linhvucKhach_linhvuc" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyKOLModel.FK_linhvucKOL_linhvuc" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

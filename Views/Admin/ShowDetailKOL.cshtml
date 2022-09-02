@@ -1,0 +1,27 @@
+﻿@model QuanLiKOL.Models.KOL
+@using QuanLiKOL.Models
+@{
+    ViewBag.Title = "ShowDetailKOL";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+<link href="~/Content/css/KHACH.css" rel="stylesheet" />
+@{
+    // KOLDbContext db = new KOLDbContext();
+    string lv = "";
+    var a = Model.linhvucKOLs.ToList();
+    foreach (var c in a)
+    {
+        lv += c.linhvuc.tenlv;
+        lv += "/";
+    }
+    string avt = "\'" + Model.avatar + "\'";
+}
+<h2>Thông tin KOL @Model.nickname</h2>
+<div class="tronvo" style="background-image:src(@avt)"></div>
+@*<div>Tên tài khoản: @Model.id</div>
+<div>Lượt thích: </div>
+<div>Tên người dùng: @Model.nickname</div>
+<div>Ngày sinh: @Model.ngaysinh</div>
+<div>Lĩnh vực: @lv</div>
+<div> @Model.s</div>*@
+

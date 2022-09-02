@@ -1,0 +1,45 @@
+﻿@model QuanLiKOL.Models.KOL
+@using QuanLiKOL.Models
+@{
+    if (Session["PQ"].ToString() == "KOL")
+    {
+        Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+    }
+
+    if (Session["PQ"].ToString() == "KHACH")
+    {
+        Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+    }
+    if (Session["PQ"].ToString() == "ADMIN")
+    {
+        Layout = "~/Views/Shared/_ADMIN.cshtml";
+    }
+    DateTime n = DateTime.Now;
+}<h1>Lựa chọn loại hợp đồng</h1>
+ <form action="LoadHD" method="post">
+     <div style="width:100%">
+         <div style="width:30%; float:left">Chọn loại:</div>
+         <div style="width:700%; float:left"> <input type="radio" value="NH" name="loaihd">Ngắn hạn <input type="radio" value="DH" name="loaihd">dài hạn</div>
+     </div>
+     <div style="width:100%">
+         <div style="width:30%; float:left">Ngày bắt đầu:</div>
+         <div style="width:700%; float:left"> <input type="date" name="nbd"> ngày đắt đầu</input></div>
+     </div>
+     <div style="width:100%">
+         <div style="width:30%; float:left">Ngày bắt đầu:</div>
+         <div style="width:700%; float:left"> <input type="date" name="bkt"> ngày kết thúc</input></div>
+     </div>
+     <input name="idkol"  hidden type="text" value="@Model.id"/>
+     <input type="submit" value="Xác nhận" />
+ </form>
+ <script src="~/Content/js/loadns.js"></script>
+<input hidden name="d" value="@n.Day"/>
+<input hidden name="m" value="@n.Month" />
+<input hidden name="y" value="@n.Year" />
+<script>
+    var d = document.getElementById("d").value;
+    var m = document.getElementById("m").value;
+    var y = document.getElementById("y").value;
+    setInputDate("#nbd", d, m, y);
+    setInputDate("#bkt", d, m, y);
+</script>

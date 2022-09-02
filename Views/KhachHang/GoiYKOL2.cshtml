@@ -1,0 +1,88 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GoiYKOL2</title>
+</head>
+<body>
+    
+    <table class="table">
+        <tr style="background-color:gray">
+            <th>
+                Id KOL
+            </th>
+            <th>
+                Nick Name
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Follow
+            </th>
+            <th>
+                Fl TikTok
+            </th>
+            <th>
+                KOL Core
+            </th>
+            <th>
+                Fields
+            </th>
+
+            <th>
+                Option
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sdt)
+                </td>
+                <td>
+                    @{
+                        int a = (int)item.kolcore;
+                        int b = (int)item.fltiktok;
+                        int fl = a - b;
+                    }
+                    @fl
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fltiktok)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kolcore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.malv)
+                </td>
+                <td>
+                    <a href="#####">Show Detail</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

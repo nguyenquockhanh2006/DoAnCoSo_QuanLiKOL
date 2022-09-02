@@ -1,0 +1,102 @@
+﻿@model QuanLiKOL.Models.Common.Connect
+@using QuanLiKOL.Models
+@{
+    if (Session["id"] != null)
+    {
+        if (Session["PQ"].ToString() == "KOL")
+        {
+            Layout = "~/Views/Shared/_KOLLayoutPage.cshtml";
+        }
+
+        if (Session["PQ"].ToString() == "KHACH")
+        {
+            Layout = "~/Views/Shared/_KHACHHANG.cshtml";
+        }
+        if (Session["PQ"].ToString() == "ADMIN")
+        {
+            Layout = "~/Views/Shared/_ADMIN.cshtml";
+        }
+    }
+    
+}
+<link href="~/Content/css/TrangCaNhan.css" rel="stylesheet" type="text/css" />
+<body>
+    @{
+        string b = @Model.kol.id;
+        string a = Session["id"].ToString();
+        int fl = Model.kol.fls.Count;
+        KOLDbContext db = new KOLDbContext();
+
+    }
+
+    <div class="avatar">
+        <div>
+            <img style="width: 220px; height: 220px; border-radius: 50%;float:left" src="@Model.kol.avatar" title="source: imgur.com" />
+        </div>
+        <div>
+            <div class="nickname">@Model.kol.nickname</div>
+            <div class="ten">@Model.kol.ten</div>
+            <hr />
+            <div>KOL core: @Model.kol.kolcore <i class="fa-brands fa-creative-commons-nc"></i></div>
+            <div>Lượt follow: @fl <i class="fa-solid fa-check"></i></div>
+            @if (Session["id"].ToString() != Model.kol.id)
+            {
+                <button style="background-color: orangered"><a href="~/KhachHang/ReportKOL/@b">Report </a></button>
+                var temp = db.fls.Where(x => x.idkhach == a && x.idkol == b).FirstOrDefault();
+                if (temp != null)
+                {
+                    <div>
+                        <button style="background-color:forestgreen"><a href="~/KhachHang/DeFollow/@b"><i class="fa-solid fa-check"></i> Following</a></button>
+                    </div>
+                }
+                else
+                {
+                    if (Session["PQ"].ToString() == "KHACH")
+                    {
+                        <div>
+                            <button style=""><a href="~/KhachHang/Followkol/@b">Follow </a></button>
+                        </div>
+                    }
+                }
+            }
+            <div class="hosoCN">
+                <div class="form-submit">
+                    <img style="float:left; width:30px; height:30px" src="~/Content/images/hs.png" />
+                    <a style="text-decoration: none; display: flex; justify-content: center; padding-top: 7px;" href="~/KOL/HoSoKOL/@b">Hồ sơ </a>
+                    @if (Session["id"].ToString() == Model.kol.id)
+                    {
+                        <button><a href="~/KOL/LoadBVKOL/@Model.kol.id">Đăng bài</a></button>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="wrapper">
+        <div id="hoso">
+            @foreach (var item in Model.anh)
+            {
+            <div style="width:300px; float:left; scroll-margin-left:30px">
+                <img style="width: 300px; height: 300px; margin-left: 30px; margin-top: 30px; float: left" class="anhdang" src="@item.anh" />
+                @if (Session["id"].ToString() == b)
+                {
+                    <div style="float:left; width:100%; text-align:center; justify-content:center; justify-items:center"><button><a style="color:red" href="~/KOL/XoaAnh?id=@item.tutang">Xóa</a></button></div>
+                }
+            </div>
+            }
+            @if (Session["id"].ToString() == Model.kol.id && Model.kol.Anhduocdangs.Count < 6)
+            {
+                <div style=" width: 300px; height: 300px; margin-left: 30px; margin-top: 30px; float: left; border: 1px solid;margin-bottom:30px">
+                    <a style="text-decoration: none; display: flex; justify-content: space-around; padding-top: 110px; font-size: 30px; font-family: arial; color: black;" href="~/KOL/ThemAnh">
+                        <img style="width:100px;height:100px" src="~/Content/images/add.png" />
+
+                        <div style="padding-top: 30px;">Thêm ảnh</div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+

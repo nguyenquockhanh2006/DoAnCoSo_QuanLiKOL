@@ -1,0 +1,201 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+* {
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.color-c {
+    color: #ccc;
+}
+
+#header {
+    height: 50.53px;
+    list-style: none;
+    padding: 14px 0px;
+    justify-content: left;
+    background-color: #222;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    z-index: 1;
+}
+
+#main-menu {
+    display: inline-block;
+}
+
+    #main-menu li {
+        padding: 0px 25px;
+        display: inline-block;
+    }
+
+        .main-menu-right a:hover,
+        #main-menu li:hover > a {
+            color: white;
+        }
+
+    #main-menu > li > a {
+        text-decoration: none;
+        color: aqua;
+    }
+
+.main-menu-right {
+    float: right;
+    font-size: 20px;
+}
+
+    .main-menu-right a {
+        color: aqua;
+        text-decoration: none;
+        padding: 0px 25px;
+    }
+
+
+#slider {
+    /*padding-top:50%;*/
+    /*float: left;*/
+    /*top:0;
+    right:0;
+    left:0;*/
+    width:100%;
+    float:left;
+    height:auto;
+
+}
+
+.video-slider {
+
+
+}
+
+#content {
+    /*float:left;*/
+    justify-content:center;
+    justify-items:center;
+}
+
+#top-kol {
+    background-color: azure;
+    margin-top: -30px;
+    padding-bottom: 60px;
+}
+
+.top-text {
+    text-align: center;
+    color: crimson;
+    margin-top: 30px;
+    padding: 30px 0px;
+}
+
+
+#kol-description {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.top-kol-items {
+    margin: 10px 36px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%)
+}
+
+.kol-img {
+    width: 220px;
+    height: 230px;
+    object-fit:contain;
+}
+
+    .kol-img:hover {
+        opacity: 0.6;
+    }
+
+.kol-name {
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 2px;
+    background-color: darksalmon;
+}
+
+.kol-note {
+    text-align: center;
+    background-color: darksalmon;
+    padding-bottom: 6px;
+}
+
+    .kol-note > a {
+        text-decoration: none;
+        color: lemonchiffon;
+    }
+
+
+.book-btn a {
+    text-decoration: none;
+    font-size: 20px;
+    color: crimson;
+    font-style: italic;
+    background-color: azure;
+}
+
+#footer {
+    width: 100%;
+    float: left;
+    min-height: 150px;
+    background-color: #333;
+}
+
+.boxcenter {
+    margin: 0 auto;
+    color: azure;
+    display: flex;
+    padding: 26px 0px;
+    line-height: 1.8;
+}
+
+.box-items {
+    width: 25%;
+    margin: 0px 30px;
+}
+
+.mem-list .mem-img {
+    width: 100px;
+    display: inline-block;
+    border: 2px solid aqua;
+    border-radius: 50px;
+    margin: 0px 4px;
+}
+
+.box-items h4 {
+    padding-bottom: 20px;
+}
+
+.box-items .social-icons {
+    padding: 0px 6px;
+    font-size: 26px;
+}
+
+    .box-items .social-icons:hover,
+    .box-items a:hover,
+    .box-items .address:hover {
+        color: aqua;
+    }
+
+.box-items a {
+    color: azure;
+    text-decoration: none;
+}
+
+.boxcenter2 {
+}

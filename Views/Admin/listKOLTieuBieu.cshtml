@@ -1,0 +1,85 @@
+﻿@model IEnumerable<QuanLiKOL.Models.KOL>
+
+@{
+    ViewBag.Title = "listKOLTieuBieu";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+
+<div style="padding:20px">
+    <h2>List Typical KOL</h2>
+    <hr />
+
+    <link href="~/Content/css/TableStyleSheet.css" rel="stylesheet" />
+    <table class="table">
+        <tr style="background-color:gray">
+            <th>
+                Id KOL
+            </th>
+            <th>
+                Nick Name
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Follow
+            </th>
+            <th>
+                Fl TikTok
+            </th>
+            <th>
+                KOL Core
+            </th>
+            <th>
+                Fields
+            </th>
+
+            <th>
+                Option
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sdt)
+                </td>
+                <td>
+                    @{
+                        int a = (int)item.kolcore;
+                        int b = (int)item.fltiktok;
+                        int fl = a - b;
+                    }
+                    @fl
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fltiktok)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kolcore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.malv)
+                </td>
+                <td>
+                    <a href="~/KOL/TrangCaNhan?id=@item.id">Show Detail</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

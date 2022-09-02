@@ -1,0 +1,69 @@
+﻿@model IEnumerable<QuanLiKOL.Models.khach>
+
+@{
+    ViewBag.Title = "LoadKhach";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+
+<h2>LoadKhach</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaysinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.avatar)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.nickname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaysinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diachi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.avatar)
+        </td>
+        <td>
+           <a href="~/KhachHang/TrangCaNhanKhach?id=@item.id">Show detail</a>
+        </td>
+    </tr>
+}
+
+</table>

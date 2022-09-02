@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "RegisterAdmin";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+
+<h2>RegisterAdmin</h2>
+    <link href="~/Content/css/RegisterKOLStyleSheet.css" rel="stylesheet" />
+
+    <div id="wrapper">
+        <form method="post" action="RegisterAdmin" id="form-DK">
+            <div style="display: flex; justify-content: space-around;">
+                <img style="width: 250px; height: 100px;"
+                     src="https://i.imgur.com/97sOSkJ.png" />
+            </div>
+
+            <div class="form-group">
+                <div class="tieude">Tên đăng  nhập:</div><input name="id"
+                                                                type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Mật khẩu:</div><input name="pass"
+                                                          type="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Tên tài khoản:</div><input name="nickname"
+                                                               type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Tên người dùng:</div><input name="name"
+                                                                type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <div class="tieude">Ngày sinh:</div><input name="ngaysinh"
+                                                           type="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Avartar:</div><input name="diachi"
+                                                         type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="tieude">Gmail:</div><input name="gmail"
+                                                       type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <div class="tieude">Số điện thoại:</div><input name="SDT"
+                                                               type="text" class="form-control">
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" name="submit" class="form-submit"
+                       value="Đăng kí" />
+            </div>
+        </form>
+    </div>

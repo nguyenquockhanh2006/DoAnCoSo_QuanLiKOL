@@ -1,0 +1,89 @@
+﻿@model IEnumerable<QuanLiKOL.Models.BaiVietKOL>
+@using QuanLiKOL.Models
+@{
+    ViewBag.Title = "FeaturedArticles";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+
+<link href="~/Content/css/TableStyleSheet.css" rel="stylesheet" />
+<div style="padding:20px">
+    <form action="FeaturedArticles" method="post" style="width: 100%; border-radius: 5%; box-shadow: 0px 0px 17px 2px rgb(66 64 64); ">
+        <div style="width: 100%; padding: 20px">
+            <strong><span style="width:100%; float:left">Chose time:</span></strong>
+            <input type="radio" name="time" value="ALL" checked /> No time
+            <input type="radio" name="time" value="NAM" /> The Year
+            <input type="radio" name="time" value="THANG" /> The Month
+        </div>
+
+        <div style="width: 100%; padding: 20px">
+            <strong><span style="width:100%; float:left">Chose numbers of top:</span></strong>
+            <input type="radio" name="top" value="5" /> Top 5
+            <input type="radio" name="top" value="10" /> Top 10
+            <input type="radio" name="top" value="20" /> Top 20
+            <input type="radio" name="top" value="100" checked /> Top 100
+        </div>
+        <div style="width: 100%; padding: 20px; justify-content:center; justify-items:center">
+            <input type="submit" value="Show" />
+        </div>
+    </form>
+    <h2>Rank Table of KOL </h2>
+    <hr />
+    <table class="table">
+        <tr style="background-color:gray">
+            <th>
+                Id KOL
+            </th>
+            <th>
+                Post Id
+            </th>
+            <th>
+                Post Name
+            </th>
+            <th>
+                Post Day
+            </th>
+            <th>
+                Number of like
+            </th>
+            <th>
+                Option
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaBV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TieuDe)
+                </td>
+                <td>
+                    @{
+                        string ngayngayngay = item.ngaydang.Value.Day.ToString() + "/" + item.ngaydang.Value.Month.ToString() + "/" + item.ngaydang.Value.Year.ToString();
+                    }
+                    @ngayngayngay
+                </td>
+                <td>
+                    @{
+                        KOLDbContext db = new KOLDbContext();
+                        int fl = db.LuotThichBVKOLs.Where(x => x.MaBV == item.MaBV).ToList().Count;
+                    }
+                    @fl
+                </td>
+
+                <td>
+                    @{
+                        string laytt = "\n" + item.MaBV + "\n";
+                    }
+                    <strong><a style="color:black" href="~/Admin/showdetailBV?id=@item.MaBV">Show Detail</a></strong>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

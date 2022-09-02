@@ -1,0 +1,74 @@
+﻿@model IEnumerable<QuanLiKOL.Models.ToCao>
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_ADMIN.cshtml";
+}
+
+<h2>Report</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã tố cáo
+        </th>
+        <th>
+            Bị cáo
+        </th>
+        <th>
+            Người tố cáo
+        </th>
+        <th>
+            Thời gian
+        </th>
+        <th>
+            Lí do
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            Xử lí
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.matocao
+            </td>
+            <td>
+                @item.idbitocao
+            </td>
+            <td>
+                @item.Idtocao
+            </td>
+            <td>
+                @item.thoigian
+            </td>
+            <td>
+                @item.Lido
+            </td>
+            <td>
+                @if (@item.Trangthai == 1)
+                {<span>Chưa xử lí</span>}
+                else
+                {
+                    <span>Đã giải quyết</span>
+                }
+            </td>
+            <td>
+                @if(item.Trangthai == 1)
+                {
+                    <a href="~/Admin/XoaTaiKhoanReport?idtocao1=@item.matocao">Xóa tài khoản</a><span>/</span><a href="~/Admin/CanhCaoTaiKhoanReport?idtocao1=@item.matocao">Gửi cảnh cáo</a><span>/</span><a href="~/Admin/BoquaReport?idtocao1=@item.matocao">Bỏ qua report</a>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
